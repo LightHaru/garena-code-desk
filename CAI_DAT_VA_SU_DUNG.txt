@@ -1,0 +1,54 @@
+CỦ CẢI · GARENA CODE DESK 1.0.3 — BẢN THỬ NGHIỆM
+Tiện ích Chrome trên máy tính cho Garena Delta Force Việt Nam.
+
+TRANG TẢI CHÍNH:
+https://github.com/LightHaru/garena-code-desk/releases
+
+CÀI MIỄN PHÍ:
+1. Giải nén Garena-Code-Desk-v1.0.3.zip vào một thư mục cố định trên máy.
+2. Mở Google Chrome trên máy tính (phiên bản 116 trở lên).
+3. Gõ chrome://extensions vào thanh địa chỉ.
+4. Bật Chế độ dành cho nhà phát triển / Developer mode.
+5. Bấm Tải tiện ích đã giải nén / Load unpacked.
+6. Chọn thư mục extension chứa manifest.json trong thư mục vừa giải nén.
+7. Ghim Củ Cải · Garena Code Desk từ biểu tượng mảnh ghép của Chrome.
+8. Giữ nguyên thư mục đã cài; Chrome sẽ tiếp tục đọc các file tại đó.
+
+DÙNG:
+- Mở https://redeem.df.garena.sg/vi/cdkgarena.html
+- Đăng nhập tài khoản game trên trang Garena. Đăng nhập Chrome là một phiên riêng.
+- Kiểm tra đúng tài khoản, bấm Bắt đầu trên khung nổi.
+- Bốn số thể hiện Đã xử lý trong lượt, Còn chờ, Đã nhận và Bỏ qua.
+- Có thể Dừng, Tiếp tục và thu gọn khung tại chỗ.
+- Có thể dùng tab hoặc ứng dụng khác; giữ Chrome và tab Garena mở, máy đang thức.
+- Trong popup, Quét nguồn & đổi ngay cập nhật danh sách rồi mở lượt mới.
+- Bảng quản lý cho dán/nhập TXT, CSV, JSON; cấu hình nguồn, lịch và xuất lịch sử.
+- Tự đổi sau lịch quét mặc định tắt; có thể chủ động bật trong bảng quản lý.
+
+CẬP NHẬT THỦ CÔNG:
+- Bấm Dừng và đợi code đang gửi có kết quả.
+- Tải bản ZIP mới từ trang Releases, giải nén và chép đè nội dung extension
+  vào ĐÚNG thư mục extension đang dùng; không đổi đường dẫn thư mục đã nạp.
+- Vào chrome://extensions, bấm nút Tải lại trên thẻ tiện ích, rồi tải lại trang Garena.
+- Bản cài từ thư mục không nhận cập nhật tự động như bản Chrome Web Store.
+
+PHẠM VI:
+- Code từ nguồn là ứng viên; không bảo đảm còn hạn hoặc mọi tài khoản nhận được.
+- Nguồn chữ công khai: XemGì và các bài tin Garena; không quét nhóm riêng, ảnh,
+  video hoặc bình luận. Có thể nhập bổ sung từ danh sách của bạn.
+- Lỗi cấu hình gói quà sẽ hoãn code đó; kết quả chưa rõ sẽ dừng để kiểm tra.
+- Máy ngủ, Chrome đóng, phiên hết hạn, CAPTCHA hoặc trang treo có thể ngắt lượt.
+- Lịch sử phân theo tên hiển thị. Tài khoản trùng tên nên dùng hồ sơ Chrome riêng.
+- Không phải sản phẩm chính thức hoặc được Garena/Google bảo trợ.
+
+DỮ LIỆU VÀ HỖ TRỢ:
+- Tên hiển thị, code, cài đặt và lịch sử được lưu trong hồ sơ Chrome trên máy.
+- Chính sách: https://lightharu.github.io/garena-code-desk-site/privacy.html
+- Báo lỗi: https://github.com/LightHaru/garena-code-desk/issues
+- Không gửi mật khẩu, cookie, OTP, token hay file lịch sử riêng nếu không cần thiết.
+
+TÌNH TRẠNG KIỂM TRA:
+- 35/35 kiểm tra logic và 33/33 kiểm tra trình duyệt giả lập đạt.
+- Chưa xác nhận bản 1.0.3 đổi quà trên tài khoản Garena thật.
+- Chưa quan sát lịch tự chạy đủ một ngày thật.
+- Đây là bản thử nghiệm phát qua GitHub, chưa phát hành trên Chrome Web Store.
