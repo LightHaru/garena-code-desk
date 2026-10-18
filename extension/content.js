@@ -15,14 +15,20 @@
     return css.display !== "none" && css.visibility !== "hidden" && Number(css.opacity) !== 0 && node.getClientRects().length > 0;
   }
   function clickPageControl(node) {
-    // Garena uses javascript:void(0) anchors as buttons. Keep its click handlers,
-    // while cancelling the URL's default action, which content-script CSP blocks.
-    const preventScriptNavigation = event => {
-      if (node.closest("a[href]")?.protocol === "javascript:") event.preventDefault();
-    };
+    // Remove the script URL before Chrome starts anchor activation. Cancelling
+    // the click alone still produced CSP reports from the isolated world.
+    const anchor = node.closest("a[href]");
+    if (anchor?.protocol !== "javascript:") { node.click(); return; }
+    const href = anchor.getAttribute("href");
+    const preventScriptNavigation = event => event.preventDefault();
+    anchor.removeAttribute("href");
     node.addEventListener("click", preventScriptNavigation, true);
     try { node.click(); }
-    finally { node.removeEventListener("click", preventScriptNavigation, true); }
+    finally {
+      node.removeEventListener("click", preventScriptNavigation, true);
+      // Preserve a new destination if the site's handler assigned one.
+      if (!anchor.hasAttribute("href")) anchor.setAttribute("href", href);
+    }
   }
   function blockers() {
     if ([...document.querySelectorAll('iframe[src*="captcha"],iframe[src*="challenge"],.g-recaptcha,.h-captcha,[id*="captcha"]')].some(visible)) return "Trang đang yêu cầu xác minh. Anh xử lý trên Garena rồi bấm Tiếp tục.";
