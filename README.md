@@ -8,20 +8,22 @@
 
 Tiện ích Chrome trên **máy tính** giúp quản lý và tự nhập giftcode trên trang đổi quà Garena Delta Force Việt Nam.
 
-**Bản thử nghiệm 1.2.1 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
+**Bản thử nghiệm 1.2.2 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
 
 ## Tải về
 
-**[Tải Garena-Code-Desk-v1.2.1.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.2.1/Garena-Code-Desk-v1.2.1.zip)**
+**[Tải Garena-Code-Desk-v1.2.2.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.2.2/Garena-Code-Desk-v1.2.2.zip)**
 
 [Tất cả phiên bản](https://github.com/LightHaru/garena-code-desk/releases) · [Website](https://lightharu.github.io/garena-code-desk-site/) · [Quyền riêng tư](https://lightharu.github.io/garena-code-desk-site/privacy.html) · [Báo lỗi](https://github.com/LightHaru/garena-code-desk/issues)
 
-Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.2.1.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
+Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.2.2.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
 
-## Bản 1.2.1 có gì mới?
+## Bản 1.2.2 có gì mới?
 
 | Khu vực | Thay đổi |
 |---|---|
+| Code lỗi bỏ qua luôn | Không hẹn 24 giờ; không gửi lại trong lượt sau hoặc sau khi quét nguồn |
+| Cập nhật lịch sử cũ | Chuyển Chờ thử lại / Chưa mở đổi / Cần kiểm tra thành Đã bỏ qua; giữ nguyên phản hồi, thời điểm và số lần đã thử |
 | Nút không mất khi rê chuột | Giữ ảnh nền và chữ rõ ở trạng thái hover; nút Chọn file hiển thị gọn |
 | Quét và tự thêm | Code mới tự lưu vào hàng chờ, báo rõ số đã thêm; không cần dán hoặc bấm nhập lại |
 | Xem code mới | Nút **Xem code mới**, bộ lọc **Mới từ lượt quét** và nhãn trên từng mã; mã mới lên đầu danh sách |
@@ -41,13 +43,15 @@ Giữ bản vá CSP từ 1.1.2: tạm bỏ URL javascript của nút Đổi/Đó
 
 Ảnh chụp từ **mã giao diện thật với dữ liệu mẫu**, chưa phải ảnh xác nhận đã cài hoặc đổi quà trên tài khoản Garena thật.
 
-![Bảng quản lý Code Desk 1.2.1 — dữ liệu mẫu](media/dashboard-v1.2.1.webp)
+![Bảng quản lý Code Desk 1.2.2 — dữ liệu mẫu](media/dashboard-v1.2.2.webp)
 
-![Code mới tự vào hàng chờ và có bộ lọc riêng — dữ liệu mẫu](media/new-codes-v1.2.1.webp)
+![Code lỗi đã bỏ qua, không có nút Thử lại — dữ liệu mẫu](media/skipped-errors-v1.2.2.webp)
 
-<p><img src="media/popup-v1.2.1.webp" width="320" alt="Đầu popup Code Desk 1.2.1 — dữ liệu mẫu"> <img src="media/popup-bottom-v1.2.1.webp" width="320" alt="Cuối popup Code Desk 1.2.1, khung còn nguyên khi cuộn — dữ liệu mẫu"></p>
+![Code mới tự vào hàng chờ và có bộ lọc riêng — dữ liệu mẫu](media/new-codes-v1.2.2.webp)
 
-![Khung nổi Code Desk 1.2.1 — dữ liệu mẫu](media/panel-v1.2.1.webp)
+<p><img src="media/popup-v1.2.2.webp" width="320" alt="Đầu popup Code Desk 1.2.2 — dữ liệu mẫu"> <img src="media/popup-bottom-v1.2.2.webp" width="320" alt="Cuối popup Code Desk 1.2.2, khung còn nguyên khi cuộn — dữ liệu mẫu"></p>
+
+![Khung nổi Code Desk 1.2.2 — dữ liệu mẫu](media/panel-v1.2.2.webp)
 
 **[Hướng dẫn có ảnh →](https://lightharu.github.io/garena-code-desk-site/guide.html)**
 
@@ -96,18 +100,18 @@ Nguồn chính thức: [Garena Việt Nam](https://deltaforce.garena.vn/), [YouT
 
 - Nhớ code đã nhận/đã dùng theo tên hiển thị tài khoản.
 - Code hết hạn, không hợp lệ hoặc hết lượt được loại khỏi hàng chờ và giữ dấu lịch sử để không tự nhập lại.
-- Lỗi cấu hình gói quà hoãn code đó ít nhất 24 giờ để tiếp tục code khác.
-- Lỗi mạng, xác minh hoặc kết quả chưa rõ có thể dừng lượt và giữ code để kiểm tra.
+- Code lỗi, kể cả cấu hình gói quà 400073, được bỏ qua luôn và tiếp tục các code khác; không hẹn thử lại.
+- Lỗi mạng, đăng nhập, xác minh hoặc mất phản hồi: bỏ qua code đã gửi và tạm dừng lượt; xử lý trên Garena rồi tiếp tục các code còn lại. Với HTTP 429, chờ ít nhất 15 phút.
 
 Code tìm thấy là ứng viên; quyền nhận quà và hiệu lực do Garena quyết định. Bộ quét đọc nguồn chữ công khai XemGì và một số bài tin Garena, không bao phủ bình luận, ảnh, livestream hoặc nhóm riêng tư. Lịch sử dùng tên hiển thị; tài khoản trùng tên nên dùng hồ sơ Chrome riêng.
 
 ## Cập nhật
 
-Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đợi kết quả đang gửi; tải ZIP mới, chép nội dung `extension` vào đúng thư mục cũ, bấm **Tải lại** tiện ích trong `chrome://extensions` và kiểm tra số **1.2.1**, rồi tải lại trang Garena. Giữ đường dẫn thư mục đã nạp để tiếp tục dùng dữ liệu của bản cài đó. Mục Lỗi của Chrome có thể còn giữ báo cáo cũ; xóa các báo cáo đó rồi bắt đầu một lượt mới để kiểm tra lỗi có tái xuất hiện hay không.
+Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đợi kết quả đang gửi; tải ZIP mới, chép nội dung `extension` vào đúng thư mục cũ, bấm **Tải lại** tiện ích trong `chrome://extensions` và kiểm tra số **1.2.2**, rồi tải lại trang Garena. Giữ đường dẫn thư mục đã nạp để tiếp tục dùng dữ liệu của bản cài đó. Mục Lỗi của Chrome có thể còn giữ báo cáo cũ; xóa các báo cáo đó rồi bắt đầu một lượt mới để kiểm tra lỗi có tái xuất hiện hay không.
 
 ## Tình trạng bản thử nghiệm
 
-Đã đạt **44/44 kiểm tra logic**, **37/37 kiểm tra trình duyệt mô phỏng** và **3/3 cấu hình nguồn** bằng DOMParser thật trên HTML công khai đã lưu. Đã kiểm tra hover trên nút thật của giao diện mẫu, mô phỏng quét thêm 2 mã làm hàng chờ tăng 25 → 27, quét lại không nhân đôi; đã xem popup 400 × 600 ở đầu/cuối và bố cục hẹp. Chưa xác nhận bản 1.2.1 trong môi trường content script cô lập trên Chrome đã cài, đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
+Đã đạt **46/46 kiểm tra logic**, **38/38 kiểm tra trình duyệt mô phỏng** và **3/3 cấu hình nguồn** bằng DOMParser thật trên HTML công khai đã lưu. Bản 1.2.2 đã kiểm tra chuyển dữ liệu chờ cũ sang Đã bỏ qua, không gửi lại lỗi sau khi quét hoặc chạy lượt mới và tạm dừng khi bị chặn phiên/kết nối. Ảnh hướng dẫn được chụp lại từ bản 1.2.2. Các sửa hover, tự thêm code và bố cục từ 1.2.1 được giữ lại. Chưa xác nhận bản 1.2.2 trong môi trường content script cô lập trên Chrome đã cài, đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
 
 Gửi báo lỗi tại [Issues](https://github.com/LightHaru/garena-code-desk/issues) kèm phiên bản và thông báo. Không đưa mật khẩu, cookie, OTP, token hoặc thông tin riêng vào báo lỗi công khai.
 

@@ -1,4 +1,4 @@
-CỦ CẢI · GARENA CODE DESK 1.2.1 — BẢN THỬ NGHIỆM
+CỦ CẢI · GARENA CODE DESK 1.2.2 — BẢN THỬ NGHIỆM
 Tiện ích Chrome trên máy tính cho Garena Delta Force Việt Nam.
 
 Bản mới có Stinger chuột quân y, Hackclaw, Vyron và D-Wolf Subrosa; mục Giới thiệu
@@ -11,7 +11,7 @@ TRANG TẢI CHÍNH:
 https://github.com/LightHaru/garena-code-desk/releases
 
 CÀI MIỄN PHÍ:
-1. Giải nén Garena-Code-Desk-v1.2.1.zip vào một thư mục cố định trên máy.
+1. Giải nén Garena-Code-Desk-v1.2.2.zip vào một thư mục cố định trên máy.
 2. Mở Google Chrome trên máy tính (phiên bản 116 trở lên).
 3. Gõ chrome://extensions vào thanh địa chỉ.
 4. Bật Chế độ dành cho nhà phát triển / Developer mode.
@@ -37,7 +37,7 @@ CẬP NHẬT THỦ CÔNG:
 - Bấm Dừng và đợi code đang gửi có kết quả.
 - Tải bản ZIP mới từ trang Releases, giải nén và chép đè nội dung extension
   vào ĐÚNG thư mục extension đang dùng; không đổi đường dẫn thư mục đã nạp.
-- Vào chrome://extensions, bấm nút Tải lại trên thẻ tiện ích, kiểm tra phiên bản 1.2.1,
+- Vào chrome://extensions, bấm nút Tải lại trên thẻ tiện ích, kiểm tra phiên bản 1.2.2,
   rồi tải lại trang Garena. Mục Lỗi có thể còn giữ báo cáo cũ: xóa báo cáo cũ trước
   khi chạy lượt mới để phân biệt lỗi mới.
 - Bản cài từ thư mục không nhận cập nhật tự động như bản Chrome Web Store.
@@ -46,7 +46,10 @@ PHẠM VI:
 - Code từ nguồn là ứng viên; không bảo đảm còn hạn hoặc mọi tài khoản nhận được.
 - Nguồn chữ công khai: XemGì và các bài tin Garena; không quét nhóm riêng, ảnh,
   video hoặc bình luận. Có thể nhập bổ sung từ danh sách của bạn.
-- Lỗi cấu hình gói quà sẽ hoãn code đó; kết quả chưa rõ sẽ dừng để kiểm tra.
+- Code lỗi được bỏ qua luôn, không hẹn giờ và không tự thử lại.
+- Cập nhật 1.2.2 tự chuyển code Chờ thử lại / Chưa mở đổi / Cần kiểm tra sang Đã bỏ qua.
+- Đăng nhập, CAPTCHA, 429 hoặc lỗi mạng: bỏ qua code đã gửi và tạm dừng lượt.
+  Xử lý trên Garena rồi tiếp tục các code còn lại; 429 chờ ít nhất 15 phút.
 - Máy ngủ, Chrome đóng, phiên hết hạn, CAPTCHA hoặc trang treo có thể ngắt lượt.
 - Lịch sử phân theo tên hiển thị. Tài khoản trùng tên nên dùng hồ sơ Chrome riêng.
 - Không phải sản phẩm chính thức hoặc được Garena/Google bảo trợ.
@@ -63,16 +66,18 @@ CỦ CẢI PHẪN NỘ:
 - Facebook: https://www.facebook.com/profile.php?id=61594886253423
 
 TÌNH TRẠNG KIỂM TRA:
-- 44/44 kiểm tra logic và 37/37 kiểm tra trình duyệt giả lập đạt.
+- 46/46 kiểm tra logic và 38/38 kiểm tra trình duyệt giả lập đạt.
 - Giữ bản vá 1.1.2: tạm bỏ URL javascript của nút Đổi/Đóng trong lúc click.
 - 3/3 cấu hình nguồn mới đọc được đúng danh sách từ HTML công khai đã lưu.
 - Đã xem khung popup khi cuộn, giao diện và website với dữ liệu mẫu.
-- Chưa xác nhận môi trường content script cô lập trong Chrome đã cài bản 1.2.1.
-- Chưa xác nhận bản 1.2.1 đổi quà trên tài khoản Garena thật.
+- Chưa xác nhận môi trường content script cô lập trong Chrome đã cài bản 1.2.2.
+- Chưa xác nhận bản 1.2.2 đổi quà trên tài khoản Garena thật.
 - Chưa quan sát lịch tự chạy đủ một ngày thật.
 - Đây là bản thử nghiệm phát qua GitHub, chưa phát hành trên Chrome Web Store.
 
-BẢN VÁ 1.2.1:
+BẢN VÁ 1.2.2:
+- Code lỗi bỏ qua luôn. Mã đã bỏ qua không tự trở lại khi quét nguồn hoặc chạy lượt mới.
+- Giữ phản hồi gốc, số lần đã thử, thời gian và kết quả thành công của các tài khoản.
 - Nút vẫn rõ khi rê chuột; ô chọn file không tràn ra ngoài nút.
 - Quét nguồn tự lưu mã mới vào hàng chờ. Có thông báo, nút Xem code mới và bộ lọc Mới từ lượt quét.
 - Mã trùng và kết quả cũ được giữ nguyên; không cần dán hoặc nhập code lại sau khi quét.

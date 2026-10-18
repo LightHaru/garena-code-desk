@@ -57,8 +57,8 @@ async function pumpRunner() {
       if (Date.now() - current.at > 180000) {
         await mutate(s => {
           if (s.run.current?.attemptId !== current.attemptId) return;
-          markUncertain(s, "Không nhận được kết quả sau 3 phút. Cần kiểm tra lại code.");
-          s.run.status = "paused"; s.run.reason = "Trang Garena không phản hồi; đã dừng và giữ code.";
+          markUncertain(s, "Không nhận được kết quả sau 3 phút.");
+          s.run.status = "paused"; s.run.reason = "Trang Garena không phản hồi; đã bỏ qua code vừa gửi và tạm dừng lượt.";
         });
       } else if (Date.now() - current.at >= ATTEMPT_TIMEOUT) {
         try { await chrome.tabs.sendMessage(state.run.tabId, { type: "ATTEMPT_TIMEOUT", attemptId: current.attemptId }); } catch {}
@@ -110,15 +110,11 @@ async function initialize() {
       state.meta.seededAt = seed.fetchedAt;
       await chrome.storage.local.set({ [STORAGE_KEY]: state });
     }
-    if (state.meta.runnerSchema !== 2) {
-      for (const record of Object.values(state.codes)) {
-        for (const result of Object.values(record.accounts)) {
-          if (Number(result.serverCode) !== 400073) continue;
-          result.nextRetryAt = Math.max(result.nextRetryAt || 0, Number(result.at || Date.now()) + GCA.DAY);
-          result.reason = GCA.classify({ serverCode: 400073 }).reason;
-        }
-      }
-      state.meta.runnerSchema = 2;
+    if (state.meta.runnerSchema !== 3) {
+      state.meta.noRetryMigrated = GCA.migrateNoRetry(state);
+      state.meta.runnerSchema = 3;
+      // A previous pause can still describe the retired retry policy.
+      if (state.run.status !== "running" && !state.run.current && state.meta.noRetryMigrated) state.run.reason = `Đã bỏ qua ${state.meta.noRetryMigrated} kết quả lỗi/chờ cũ; không tự thử lại. Có thể chạy các code còn lại.`;
       await chrome.storage.local.set({ [STORAGE_KEY]: state });
     }
     await ensureDailyAlarm(state);
@@ -258,7 +254,7 @@ function markUncertain(state, reason) {
     const record = state.codes[current.code], key = GCA.accountKey(state.run.accountName);
     const prior = record.accounts[key] || {};
     const notClicked = current.clicked === false;
-    record.accounts[key] = { ...prior, status: notClicked ? "pending" : "review", attempts: Math.max(0, (prior.attempts || 0) - (notClicked ? 1 : 0)), at: Date.now(), message: reason, reason, nextRetryAt: 0 };
+    record.accounts[key] = { ...prior, status: notClicked ? "pending" : "skipped_error", attempts: Math.max(0, (prior.attempts || 0) - (notClicked ? 1 : 0)), at: Date.now(), message: reason, reason: notClicked ? reason : GCA.skipError(reason).reason, nextRetryAt: 0 };
   }
   state.run.current = null;
 }
@@ -274,8 +270,8 @@ async function attachRunner(message, sender) {
   return mutate(state => {
     if (!sender.tab || sender.frameId !== 0 || sender.tab.id !== state.run.tabId || state.run.status !== "running") return { run: false };
     if (state.run.current) {
-      markUncertain(state, "Trang đã tải lại khi đang đổi. Kiểm tra code này trong lịch sử trước khi thử lại.");
-      state.run.status = "paused"; state.run.reason = "Lượt trước chưa rõ kết quả; đã giữ lại để kiểm tra.";
+      markUncertain(state, "Trang đã tải lại khi đang đổi.");
+      state.run.status = "paused"; state.run.reason = "Lượt trước bị gián đoạn; code đã gửi được bỏ qua, code chưa bấm vẫn chờ.";
       return { run: false };
     }
     if (!message.site.ready || !message.site.account) {
@@ -303,11 +299,10 @@ async function claimCode(message, sender) {
     }
     const now = Date.now();
     if (state.run.nextAt > now) return { waitMs: state.run.nextAt - now };
-    const record = Object.values(state.codes).find(item => GCA.eligible(item, state.account, now) && item.accounts[GCA.accountKey(state.account)]?.deferredRunId !== state.run.id);
+    const record = Object.values(state.codes).find(item => GCA.eligible(item, state.account, now));
     if (!record) {
       state.run.status = "done";
-      const totals = GCA.stats(state);
-      state.run.reason = `Đã xử lý xong hàng chờ${totals.deferred ? `; ${totals.deferred} code đang chờ tới giờ thử lại` : ""}${totals.review ? `; ${totals.review} code cần kiểm tra` : ""}.`;
+      state.run.reason = "Đã xử lý xong hàng chờ. Code lỗi đã bỏ qua, không tự thử lại.";
       return { next: null };
     }
     const attemptId = crypto.randomUUID();
@@ -340,7 +335,6 @@ async function saveResult(message, sender) {
     const current = state.run.current;
     if (!current || current.attemptId !== message.attemptId || current.code !== message.code) return { accepted: false };
     const decision = GCA.applyResult(state, current.code, state.run.accountName, message.result);
-    if (decision.deferRun) state.codes[current.code].accounts[GCA.accountKey(state.run.accountName)].deferredRunId = state.run.id;
     state.run.current = null; state.run.processed++;
     state.run.nextAt = Date.now() + Math.max(3, state.settings.delaySeconds) * 1000;
     if (decision.pause) { state.run.status = "paused"; state.run.reason = decision.reason; }
@@ -359,8 +353,7 @@ function panelSnapshot(state, tabId, account = "") {
   const other = !assigned && state.run.status === "running";
   const busy = assigned && !!state.run.current;
   const processed = assigned ? state.run.processed || 0 : 0;
-  const key = GCA.accountKey(account);
-  const ready = Object.values(state.codes).filter(record => GCA.eligible(record, account) && (!assigned || record.accounts[key]?.deferredRunId !== state.run.id)).length;
+  const ready = Object.values(state.codes).filter(record => GCA.eligible(record, account)).length;
   return {
     revision: state.meta.revision || 0,
     assigned, running, busy, canStart: !running && !other && !(state.run.current && state.run.status !== "running"),
@@ -451,6 +444,7 @@ async function handle(message, sender) {
       const record = Object.hasOwn(state.codes, message.code) ? state.codes[message.code] : null;
       if (!record) throw new Error("Không tìm thấy code.");
       if (message.action === "restore") {
+        if (record.accounts[GCA.accountKey(state.account)]?.status === "skipped_error") throw new Error("Code lỗi đã được bỏ qua; không đưa lại vào hàng chờ.");
         record.globalStatus = "active";
         delete record.accounts[GCA.accountKey(state.account)];
       } else if (message.action === "dismiss") record.globalStatus = "dismissed";

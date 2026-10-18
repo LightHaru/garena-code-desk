@@ -15,8 +15,9 @@ async function refresh() {
   try {
     const { state, nextAlarm } = await Desk.send("GET_STATE"); currentState = state;
     const totals = GCA.stats(state);
-    for (const id of ["waiting", "redeemed", "skipped", "review"]) el(`stat-${id}`).textContent = totals[id];
-    el("stat-deferred").textContent = totals.deferred ? `${totals.deferred} code chờ tới giờ thử lại` : "Sẵn sàng thử trên Garena";
+    for (const id of ["waiting", "redeemed", "skipped"]) el(`stat-${id}`).textContent = totals[id];
+    el("stat-review").textContent = totals.errors;
+    el("stat-deferred").textContent = "Code lỗi bỏ qua, không tự thử lại";
     el("account-name").textContent = state.account || "Chưa kết nối";
     el("run-status").textContent = ({ running: "ĐANG ĐỔI TỪNG CODE", paused: "ĐÃ TẠM DỪNG", done: "XONG HÀNG CHỜ", idle: "SẴN SÀNG" })[state.run.status];
     el("runner-symbol").textContent = state.run.status === "running" ? "▶" : state.run.status === "done" ? "✓" : "Ⅱ";
@@ -68,8 +69,8 @@ function renderCodes() {
     const status = GCA.codeStatus(record, account);
     if (filter === "all") return true;
     if (filter === "new") return newCodes.has(record.code);
-    if (filter === "queue") return ["pending", "processing", "retry", "future"].includes(status);
-    if (filter === "archived") return ["used", "expired", "invalid", "exhausted", "account_limit", "dismissed"].includes(status);
+    if (filter === "queue") return ["pending", "processing"].includes(status);
+    if (filter === "archived") return ["used", "expired", "invalid", "exhausted", "account_limit", "dismissed", "skipped_error"].includes(status);
     return status === filter;
   }).sort((a, b) => Number(newCodes.has(b.code)) - Number(newCodes.has(a.code)) || b.firstSeen - a.firstSeen);
   page = Math.min(page, Math.max(0, Math.ceil(records.length / PAGE_SIZE) - 1));
@@ -87,7 +88,7 @@ function renderCodes() {
     const message = textNode("td", result?.reason || result?.message || (status === "pending" ? "Chưa thử trên Garena" : ""), "message");
     if (result?.at) message.append(document.createElement("br"), textNode("small", Desk.date(result.at)));
     const buttons = document.createElement("td");
-    if (status !== "processing") {
+    if (!["processing", "skipped_error"].includes(status)) {
       const canRestore = status !== "pending";
       const button = textNode("button", canRestore ? "Thử lại" : "Loại", "row-action");
       button.setAttribute("aria-label", `${canRestore ? "Thử lại" : "Loại"} ${record.code}`);

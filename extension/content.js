@@ -93,7 +93,7 @@
     observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ["class", "style"] });
     window.addEventListener("message", onNetwork);
     timer = setTimeout(() => settle({ message: "Không nhận được kết quả rõ ràng sau 30 giây." }), 30000);
-    return { promise, cancel: () => settle({ message: "Lượt dừng trước khi bấm Đổi." }), timeout: () => settle({ message: "Không nhận được kết quả rõ ràng; giữ code để kiểm tra." }) };
+    return { promise, cancel: () => settle({ message: "Lượt dừng trước khi bấm Đổi." }), timeout: () => settle({ message: "Không nhận được kết quả rõ ràng sau khi gửi." }) };
   }
   async function execute(attempt) {
     const status = siteStatus();
