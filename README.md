@@ -8,15 +8,21 @@
 
 Tiện ích Chrome trên **máy tính** giúp quản lý và tự nhập giftcode trên trang đổi quà Garena Delta Force Việt Nam.
 
-**Bản thử nghiệm 1.1.0 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
+**Bản thử nghiệm 1.1.1 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
 
 ## Tải về
 
-**[Tải Garena-Code-Desk-v1.1.0.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.1.0/Garena-Code-Desk-v1.1.0.zip)**
+**[Tải Garena-Code-Desk-v1.1.1.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.1.1/Garena-Code-Desk-v1.1.1.zip)**
 
 [Tất cả phiên bản](https://github.com/LightHaru/garena-code-desk/releases) · [Website](https://lightharu.github.io/garena-code-desk-site/) · [Quyền riêng tư](https://lightharu.github.io/garena-code-desk-site/privacy.html) · [Báo lỗi](https://github.com/LightHaru/garena-code-desk/issues)
 
-Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.1.0.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
+Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.1.1.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
+
+## Bản vá 1.1.1
+
+Sửa cảnh báo **“Running the JavaScript URL violates ... Content Security Policy”** khi bấm Đổi hoặc Đóng trên Garena. Tiện ích hủy điều hướng `javascript:void(0)` của liên kết, vẫn chạy handler bấm nút của trang. Không thêm quyền hoặc nới CSP.
+
+Đã đạt 35/35 kiểm tra logic và 36/36 kiểm tra trình duyệt mô phỏng, gồm xử lý nút dạng liên kết dưới CSP. Chưa xác nhận bản vá trên tài khoản Garena thật. Giao diện và bộ nhận diện dùng thiết kế 1.1.0 dưới đây.
 
 ## Bản 1.1.0 có gì mới?
 
@@ -73,7 +79,7 @@ Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đ
 
 ## Tình trạng bản thử nghiệm
 
-Đã đạt **35/35 kiểm tra logic** và **33/33 kiểm tra trình duyệt giả lập**. Chưa xác nhận bản 1.1.0 đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
+Đã đạt **35/35 kiểm tra logic** và **36/36 kiểm tra trình duyệt giả lập**. Chưa xác nhận bản 1.1.1 đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
 
 Gửi báo lỗi tại [Issues](https://github.com/LightHaru/garena-code-desk/issues) kèm phiên bản và thông báo. Không đưa mật khẩu, cookie, OTP, token hoặc thông tin riêng vào báo lỗi công khai.
 

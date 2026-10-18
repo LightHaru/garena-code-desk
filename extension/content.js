@@ -14,6 +14,16 @@
     const css = getComputedStyle(node);
     return css.display !== "none" && css.visibility !== "hidden" && Number(css.opacity) !== 0 && node.getClientRects().length > 0;
   }
+  function clickPageControl(node) {
+    // Garena uses javascript:void(0) anchors as buttons. Keep its click handlers,
+    // while cancelling the URL's default action, which content-script CSP blocks.
+    const preventScriptNavigation = event => {
+      if (node.closest("a[href]")?.protocol === "javascript:") event.preventDefault();
+    };
+    node.addEventListener("click", preventScriptNavigation, true);
+    try { node.click(); }
+    finally { node.removeEventListener("click", preventScriptNavigation, true); }
+  }
   function blockers() {
     if ([...document.querySelectorAll('iframe[src*="captcha"],iframe[src*="challenge"],.g-recaptcha,.h-captcha,[id*="captcha"]')].some(visible)) return "Trang đang yêu cầu xác minh. Anh xử lý trên Garena rồi bấm Tiếp tục.";
     if (visible(document.querySelector("#onetrust-banner-sdk"))) return "Đóng/chọn tùy chọn cookie trên Garena rồi bấm Tiếp tục.";
@@ -86,7 +96,7 @@
     if (visible(oldDialog)) {
       const close = oldDialog.querySelector(".btn-close");
       if (!close) throw new Error("Hãy đóng thông báo cũ của Garena trước khi tiếp tục.");
-      close.click();
+      clickPageControl(close);
       await sleep(250);
       if (visible(oldDialog)) throw new Error("Không đóng được thông báo cũ. Anh đóng thủ công rồi tiếp tục.");
     }
@@ -101,7 +111,7 @@
     setter.call(input, attempt.code);
     input.dispatchEvent(new Event("input", { bubbles: true }));
     input.dispatchEvent(new Event("change", { bubbles: true }));
-    button.click();
+    clickPageControl(button);
     return tracker.promise;
   }
   async function run() {

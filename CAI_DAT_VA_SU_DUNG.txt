@@ -1,4 +1,4 @@
-CỦ CẢI · GARENA CODE DESK 1.1.0 — BẢN THỬ NGHIỆM
+CỦ CẢI · GARENA CODE DESK 1.1.1 — BẢN THỬ NGHIỆM
 Tiện ích Chrome trên máy tính cho Garena Delta Force Việt Nam.
 
 Bản mới có giao diện tác chiến, icon và thumbnail riêng; mục Giới thiệu
@@ -11,7 +11,7 @@ TRANG TẢI CHÍNH:
 https://github.com/LightHaru/garena-code-desk/releases
 
 CÀI MIỄN PHÍ:
-1. Giải nén Garena-Code-Desk-v1.1.0.zip vào một thư mục cố định trên máy.
+1. Giải nén Garena-Code-Desk-v1.1.1.zip vào một thư mục cố định trên máy.
 2. Mở Google Chrome trên máy tính (phiên bản 116 trở lên).
 3. Gõ chrome://extensions vào thanh địa chỉ.
 4. Bật Chế độ dành cho nhà phát triển / Developer mode.
@@ -59,7 +59,7 @@ CỦ CẢI PHẪN NỘ:
 - Facebook: https://www.facebook.com/profile.php?id=61594886253423
 
 TÌNH TRẠNG KIỂM TRA:
-- 35/35 kiểm tra logic và 33/33 kiểm tra trình duyệt giả lập đạt.
-- Chưa xác nhận bản 1.1.0 đổi quà trên tài khoản Garena thật.
+- 35/35 kiểm tra logic và 36/36 kiểm tra trình duyệt giả lập đạt.
+- Chưa xác nhận bản 1.1.1 đổi quà trên tài khoản Garena thật.
 - Chưa quan sát lịch tự chạy đủ một ngày thật.
 - Đây là bản thử nghiệm phát qua GitHub, chưa phát hành trên Chrome Web Store.
