@@ -1,7 +1,7 @@
-CỦ CẢI · GARENA CODE DESK 1.1.2 — BẢN THỬ NGHIỆM
+CỦ CẢI · GARENA CODE DESK 1.2.0 — BẢN THỬ NGHIỆM
 Tiện ích Chrome trên máy tính cho Garena Delta Force Việt Nam.
 
-Bản mới có giao diện tác chiến, icon và thumbnail riêng; mục Giới thiệu
+Bản mới có Stinger chuột quân y, Hackclaw, Vyron và D-Wolf Subrosa; mục Giới thiệu
 trong tiện ích dẫn về ba kênh Củ Cải Phẫn Nộ. Dấu ? trong popup mở hướng dẫn.
 
 HƯỚNG DẪN CÓ ẢNH:
@@ -11,7 +11,7 @@ TRANG TẢI CHÍNH:
 https://github.com/LightHaru/garena-code-desk/releases
 
 CÀI MIỄN PHÍ:
-1. Giải nén Garena-Code-Desk-v1.1.2.zip vào một thư mục cố định trên máy.
+1. Giải nén Garena-Code-Desk-v1.2.0.zip vào một thư mục cố định trên máy.
 2. Mở Google Chrome trên máy tính (phiên bản 116 trở lên).
 3. Gõ chrome://extensions vào thanh địa chỉ.
 4. Bật Chế độ dành cho nhà phát triển / Developer mode.
@@ -29,13 +29,15 @@ DÙNG:
 - Có thể dùng tab hoặc ứng dụng khác; giữ Chrome và tab Garena mở, máy đang thức.
 - Trong popup, Quét nguồn & đổi ngay cập nhật danh sách rồi mở lượt mới.
 - Bảng quản lý cho dán/nhập TXT, CSV, JSON; cấu hình nguồn, lịch và xuất lịch sử.
+- Thêm nguồn có sẵn Code Mới, FPT Shop và Điện máy XANH: chọn nguồn, rồi cấp quyền.
+- Dán 2 mã tìm thêm chỉ điền vào ô; bấm Thêm vào hàng chờ để nhập hai ứng viên.
 - Tự đổi sau lịch quét mặc định tắt; có thể chủ động bật trong bảng quản lý.
 
 CẬP NHẬT THỦ CÔNG:
 - Bấm Dừng và đợi code đang gửi có kết quả.
 - Tải bản ZIP mới từ trang Releases, giải nén và chép đè nội dung extension
   vào ĐÚNG thư mục extension đang dùng; không đổi đường dẫn thư mục đã nạp.
-- Vào chrome://extensions, bấm nút Tải lại trên thẻ tiện ích, kiểm tra phiên bản 1.1.2,
+- Vào chrome://extensions, bấm nút Tải lại trên thẻ tiện ích, kiểm tra phiên bản 1.2.0,
   rồi tải lại trang Garena. Mục Lỗi có thể còn giữ báo cáo cũ: xóa báo cáo cũ trước
   khi chạy lượt mới để phân biệt lỗi mới.
 - Bản cài từ thư mục không nhận cập nhật tự động như bản Chrome Web Store.
@@ -62,8 +64,10 @@ CỦ CẢI PHẪN NỘ:
 
 TÌNH TRẠNG KIỂM TRA:
 - 42/42 kiểm tra logic và 37/37 kiểm tra trình duyệt giả lập đạt.
-- Bản 1.1.2 tạm bỏ URL javascript của nút Đổi/Đóng trong lúc bấm để tránh CSP.
-- Chưa xác nhận môi trường content script cô lập trong Chrome đã cài bản 1.1.2.
-- Chưa xác nhận bản 1.1.2 đổi quà trên tài khoản Garena thật.
+- Giữ bản vá 1.1.2: tạm bỏ URL javascript của nút Đổi/Đóng trong lúc click.
+- 3/3 cấu hình nguồn mới đọc được đúng danh sách từ HTML công khai đã lưu.
+- Đã xem khung popup khi cuộn, giao diện và website với dữ liệu mẫu.
+- Chưa xác nhận môi trường content script cô lập trong Chrome đã cài bản 1.2.0.
+- Chưa xác nhận bản 1.2.0 đổi quà trên tài khoản Garena thật.
 - Chưa quan sát lịch tự chạy đủ một ngày thật.
 - Đây là bản thử nghiệm phát qua GitHub, chưa phát hành trên Chrome Web Store.

@@ -1,33 +1,79 @@
 {
   "manifest_version": 3,
   "name": "Củ Cải · Garena Code Desk",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Quét giftcode Delta Force mỗi ngày, tự đổi trên Garena và ghi nhớ code đã xử lý.",
   "homepage_url": "https://lightharu.github.io/garena-code-desk-site/",
   "minimum_chrome_version": "116",
-  "permissions": ["storage", "alarms", "offscreen"],
+  "permissions": [
+    "storage",
+    "alarms",
+    "offscreen"
+  ],
   "host_permissions": [
     "https://redeem.df.garena.sg/*",
     "https://xemgi.de/*",
     "https://deltaforce.garena.vn/*"
   ],
-  "optional_host_permissions": ["https://*/*"],
-  "background": { "service_worker": "background.js" },
-  "action": { "default_title": "Củ Cải · Code Desk", "default_popup": "popup.html", "default_icon": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" } },
+  "optional_host_permissions": [
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Củ Cải · Code Desk",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
   "options_page": "options.html",
-  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
   "content_scripts": [
     {
-      "matches": ["https://redeem.df.garena.sg/vi/cdkgarena.html*"],
-      "js": ["network-observer.js"],
+      "matches": [
+        "https://redeem.df.garena.sg/vi/cdkgarena.html*"
+      ],
+      "js": [
+        "network-observer.js"
+      ],
       "run_at": "document_start",
       "world": "MAIN"
     },
     {
-      "matches": ["https://redeem.df.garena.sg/vi/cdkgarena.html*"],
-      "js": ["core.js", "panel.js", "content.js"],
+      "matches": [
+        "https://redeem.df.garena.sg/vi/cdkgarena.html*"
+      ],
+      "js": [
+        "core.js",
+        "panel.js",
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ],
-  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'" }
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/operators-v1.2.0.webp",
+        "assets/field-console-v1.2.0.webp",
+        "assets/field-button-v1.2.0.webp"
+      ],
+      "matches": [
+        "https://redeem.df.garena.sg/*"
+      ]
+    }
+  ]
 }

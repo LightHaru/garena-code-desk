@@ -115,6 +115,20 @@ el("save-settings").addEventListener("click", async () => {
   const result = await action("SAVE_SETTINGS", { settings: { dailyEnabled: el("daily-enabled").checked, autoRedeem: el("auto-redeem").checked, dailyHour, dailyMinute, delaySeconds: Number(el("delay").value) } }, "Đã lưu lịch theo giờ Việt Nam.");
   if (result) { loadedSettings = false; await refresh(); }
 });
+const sourceSuggestions = GCASourceSuggestions.presets;
+el("source-preset").addEventListener("change", () => {
+  const preset = sourceSuggestions[el("source-preset").value];
+  if (!preset) return;
+  el("source-name").value = preset.name;
+  el("source-url").value = preset.url;
+  el("source-kind").value = "html";
+  el("source-selector").value = preset.selector;
+});
+el("research-codes").addEventListener("click", () => {
+  el("import-text").value = GCASourceSuggestions.priorityCodes.join("\n");
+  el("import-text").focus();
+  Desk.message("Đã dán 2 mã khảo sát ngày 18/10. Bấm Thêm vào hàng chờ để nhập; Garena sẽ xác nhận hiệu lực khi đổi.");
+});
 el("add-source-toggle").addEventListener("click", () => { el("source-form").hidden = !el("source-form").hidden; });
 el("source-form").addEventListener("submit", async event => {
   event.preventDefault();

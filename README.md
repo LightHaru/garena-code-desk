@@ -4,46 +4,45 @@
 
 **Bớt nhập code. Thêm giờ vào trận.**
 
-![Củ Cải Code Desk — Auto nhập code Delta Force miễn phí](media/thumbnail-v1.1.0.jpg)
+![Củ Cải Code Desk — Auto nhập code Delta Force miễn phí](media/operators-v1.2.0.jpg)
 
 Tiện ích Chrome trên **máy tính** giúp quản lý và tự nhập giftcode trên trang đổi quà Garena Delta Force Việt Nam.
 
-**Bản thử nghiệm 1.1.2 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
+**Bản thử nghiệm 1.2.0 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
 
 ## Tải về
 
-**[Tải Garena-Code-Desk-v1.1.2.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.1.2/Garena-Code-Desk-v1.1.2.zip)**
+**[Tải Garena-Code-Desk-v1.2.0.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.2.0/Garena-Code-Desk-v1.2.0.zip)**
 
 [Tất cả phiên bản](https://github.com/LightHaru/garena-code-desk/releases) · [Website](https://lightharu.github.io/garena-code-desk-site/) · [Quyền riêng tư](https://lightharu.github.io/garena-code-desk-site/privacy.html) · [Báo lỗi](https://github.com/LightHaru/garena-code-desk/issues)
 
-Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.1.2.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
+Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.2.0.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
 
-## Bản vá 1.1.2
-
-Khắc phục tiếp cảnh báo **“Running the JavaScript URL violates ... Content Security Policy”** còn được báo trên bản 1.1.1. Khi bấm Đổi hoặc Đóng, tiện ích tạm bỏ địa chỉ `javascript:void(0)` trước khi gọi click, rồi khôi phục sau đó. Handler của Garena vẫn chạy một lần. Không thêm quyền hoặc nới CSP.
-
-Đã đạt 42/42 kiểm tra logic và 37/37 kiểm tra trình duyệt mô phỏng, gồm cả hai nút dưới CSP. Chưa xác nhận bản vá trong môi trường content script cô lập trên Chrome đã cài hoặc đổi quà tài khoản Garena thật. Giao diện và bộ nhận diện dùng thiết kế 1.1.0 dưới đây.
-
-## Bản 1.1.0 có gì mới?
+## Bản 1.2.0 có gì mới?
 
 | Khu vực | Thay đổi |
 |---|---|
-| Nhận diện | Icon mới với nhân vật anime tóc bạc của kênh; thumbnail riêng cho Code Desk |
-| Popup | Tông tác chiến, bộ đếm rõ, chi tiết nguồn thu gọn và hướng dẫn mở bằng dấu **?** |
-| Bảng quản lý | Thanh điều hướng, khu nhập code, lịch, nguồn và kết quả riêng; thích ứng cửa sổ hẹp |
-| Khung nổi | Nút Bắt đầu / Dừng / Tiếp tục, bốn bộ đếm và tiến độ trong giao diện mới |
-| Hướng dẫn | Trang cách cài, dùng, đọc kết quả và cập nhật; ảnh giao diện có ghi dữ liệu mẫu |
-| Củ Cải | Giới thiệu tác giả, dẫn về TikTok, YouTube và Facebook ngay trong tiện ích |
+| Delta Force | Hackclaw, Vyron, D-Wolf skin Subrosa và **Stinger chế thành chuột quân y**, giữ tóc, tai nghe và trang phục để nhận ra đặc vụ |
+| Popup | Khung máy cố định theo cửa sổ, còn nguyên khi cuộn tới cuối; sửa thanh cuộn ngang thừa |
+| Nút & bảng quản lý | Bề mặt nút quân dụng và khung tạo bằng ImageGen; chữ, bộ đếm và thao tác là HTML thật |
+| Khung trên Garena | Hình mới, Bắt đầu / Dừng / Tiếp tục, bốn bộ đếm và tiến độ tại chỗ |
+| Nguồn code | Gợi ý điền sẵn **Code Mới, FPT Shop, Điện máy XANH**; cấp quyền cho tên miền người dùng chọn |
+| Nhập nhanh | Nút **Dán 2 mã tìm thêm · 18/10** điền hai ứng viên vào ô để bạn xem rồi thêm vào hàng chờ |
+| Website & hướng dẫn | Nền bốn đặc vụ xuyên suốt trang, ảnh giao diện mới, báo cáo nguồn và ba kênh Củ Cải |
+
+Artwork minh họa cộng đồng được tạo bằng ImageGen theo ảnh nhân vật tham khảo. Avatar và icon riêng của Củ Cải giữ đúng nhận diện kênh.
+
+Giữ bản vá CSP từ 1.1.2: tạm bỏ URL javascript của nút Đổi/Đóng trong lúc click rồi khôi phục; không nới CSP. Chưa xác nhận bản vá trong môi trường content script cô lập của Chrome đã cài.
 
 ## Xem giao diện
 
 Ảnh chụp từ **mã giao diện thật với dữ liệu mẫu**, chưa phải ảnh xác nhận đã cài hoặc đổi quà trên tài khoản Garena thật.
 
-![Bảng quản lý Code Desk 1.1.0 — dữ liệu mẫu](media/dashboard-v1.1.0.webp)
+![Bảng quản lý Code Desk 1.2.0 — dữ liệu mẫu](media/dashboard-v1.2.0.webp)
 
-<p><img src="media/popup-v1.1.0.webp" width="400" alt="Popup Code Desk 1.1.0 — dữ liệu mẫu"></p>
+<p><img src="media/popup-v1.2.0.webp" width="320" alt="Đầu popup Code Desk 1.2.0 — dữ liệu mẫu"> <img src="media/popup-bottom-v1.2.0.webp" width="320" alt="Cuối popup Code Desk 1.2.0, khung còn nguyên khi cuộn — dữ liệu mẫu"></p>
 
-![Khung nổi Code Desk 1.1.0 — dữ liệu mẫu](media/panel-v1.1.0.webp)
+![Khung nổi Code Desk 1.2.0 — dữ liệu mẫu](media/panel-v1.2.0.webp)
 
 **[Hướng dẫn có ảnh →](https://lightharu.github.io/garena-code-desk-site/guide.html)**
 
@@ -64,6 +63,28 @@ Bạn có thể dùng tab khác hoặc ứng dụng khác khi đang chạy. Gi�
 
 Trong popup có **Quét nguồn & đổi ngay**. Bảng quản lý hỗ trợ nhập TXT/CSV/JSON, thêm nguồn HTTPS, lịch quét và xuất lịch sử. Quét nguồn hằng ngày mặc định 09:00 theo giờ Việt Nam; tự đổi sau lịch quét là tùy chọn riêng, mặc định tắt.
 
+## Tìm thêm nguồn code
+
+Khảo sát ngày **18/10/2026**: đọc thêm tám trang ngoài XemGì. So với 242 chuỗi ứng viên từ lần quét XemGì, có sáu chuỗi mới; chỉ ưu tiên hai mã dưới đây vì xuất hiện trên nhiều trang phù hợp hơn. Nhiều trang có thể sao chép cùng danh sách.
+
+- **WELCOMETODF** — thấy trên 5 trang.
+- **DFVNA4T8Z6P3** — thấy trên 3 trang.
+
+**Chưa xác nhận hai mã còn đổi được.** Kết quả và điều kiện nhận quà do Garena quyết định.
+
+Trong bảng quản lý → **+ Thêm nguồn** → **Chọn nguồn đã khảo sát**, có ba cấu hình điền sẵn:
+
+| Nguồn | Ứng viên đọc được trong lần khảo sát |
+|---|---:|
+| [Code Mới](https://codemoi.net/games/delta-force/) | 20 |
+| [FPT Shop](https://fptshop.com.vn/tin-tuc/danh-gia/code-delta-force-184570) | 11 |
+| [Điện máy XANH](https://www.dienmayxanh.com/kinh-nghiem-hay/code-delta-force-garena-moi-nhat-1591472) | 19 |
+
+Chọn nguồn để điền URL và vùng chứa code, rồi bấm **Cấp quyền & thêm nguồn**. Sau khi được cấp quyền, nguồn dùng lịch quét hiện có. Số mã có thể thay đổi; XemGì và tin Garena vẫn là hai nguồn mặc định.
+
+[Báo cáo đủ tám nguồn](https://lightharu.github.io/garena-code-desk-site/assets/nguon-giftcode-20261018.md) · [Danh sách hai mã TXT](https://lightharu.github.io/garena-code-desk-site/assets/code-uu-tien-20261018.txt)
+
+Nguồn chính thức: [Garena Việt Nam](https://deltaforce.garena.vn/), [YouTube GarenaDeltaForceVN](https://www.youtube.com/@GarenaDeltaForceVN), [TikTok garenadeltaforcevn](https://www.tiktok.com/@garenadeltaforcevn). Bộ quét hiện đọc chữ công khai; chưa đọc bình luận, ảnh, livestream hoặc nhóm riêng tư.
 ## Theo dõi kết quả
 
 - Nhớ code đã nhận/đã dùng theo tên hiển thị tài khoản.
@@ -75,11 +96,11 @@ Code tìm thấy là ứng viên; quyền nhận quà và hiệu lực do Garena
 
 ## Cập nhật
 
-Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đợi kết quả đang gửi; tải ZIP mới, chép nội dung `extension` vào đúng thư mục cũ, bấm **Tải lại** tiện ích trong `chrome://extensions` và kiểm tra số **1.1.2**, rồi tải lại trang Garena. Giữ đường dẫn thư mục đã nạp để tiếp tục dùng dữ liệu của bản cài đó. Mục Lỗi của Chrome có thể còn giữ báo cáo cũ; xóa các báo cáo đó rồi bắt đầu một lượt mới để kiểm tra lỗi có tái xuất hiện hay không.
+Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đợi kết quả đang gửi; tải ZIP mới, chép nội dung `extension` vào đúng thư mục cũ, bấm **Tải lại** tiện ích trong `chrome://extensions` và kiểm tra số **1.2.0**, rồi tải lại trang Garena. Giữ đường dẫn thư mục đã nạp để tiếp tục dùng dữ liệu của bản cài đó. Mục Lỗi của Chrome có thể còn giữ báo cáo cũ; xóa các báo cáo đó rồi bắt đầu một lượt mới để kiểm tra lỗi có tái xuất hiện hay không.
 
 ## Tình trạng bản thử nghiệm
 
-Đã đạt **42/42 kiểm tra logic** và **37/37 kiểm tra trình duyệt giả lập**. Chưa xác nhận bản 1.1.2 trong môi trường content script cô lập trên Chrome đã cài, đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
+Đã đạt **42/42 kiểm tra logic**, **37/37 kiểm tra trình duyệt mô phỏng** và **3/3 cấu hình nguồn** bằng DOMParser thật trên HTML công khai đã lưu. Đã xem giao diện mẫu, popup 400 × 600 ở đầu/cuối và bố cục hẹp. Chưa xác nhận bản 1.2.0 trong môi trường content script cô lập trên Chrome đã cài, đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
 
 Gửi báo lỗi tại [Issues](https://github.com/LightHaru/garena-code-desk/issues) kèm phiên bản và thông báo. Không đưa mật khẩu, cookie, OTP, token hoặc thông tin riêng vào báo lỗi công khai.
 
