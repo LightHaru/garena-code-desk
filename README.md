@@ -71,26 +71,6 @@ Code tìm thấy là ứng viên; quyền nhận quà và hiệu lực do Garena
 
 Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đợi kết quả đang gửi; tải ZIP mới, chép nội dung `extension` vào đúng thư mục cũ, bấm **Tải lại** tiện ích trong `chrome://extensions`, rồi tải lại trang Garena. Giữ đường dẫn thư mục đã nạp để tiếp tục dùng dữ liệu của bản cài đó.
 
-### Cập nhật trực tiếp từ GitHub, không tải ZIP
-
-Cách này dành cho người đã có **Git** trên máy và cài tiện ích từ bản clone ngay từ đầu. Lần đầu mở Terminal tại thư mục muốn lưu tiện ích rồi chạy:
-
-```powershell
-git clone --branch main --single-branch https://github.com/LightHaru/garena-code-desk.git
-```
-
-Sau đó dùng **Load unpacked** chọn thư mục `garena-code-desk/extension`. Khi có bản mới, dừng lượt, chờ kết quả đang gửi, mở Terminal trong thư mục `garena-code-desk` đã clone và chạy:
-
-```powershell
-git pull --ff-only
-```
-
-Cuối cùng bấm **Tải lại** trên thẻ tiện ích trong `chrome://extensions`, rồi tải lại trang Garena. Git lấy bản mới từ nhánh `main`; không cần tải hay giải nén ZIP. Đây vẫn là cập nhật do người dùng chủ động, chưa có tự cập nhật bên trong tiện ích.
-
-Nếu đang dùng bản ZIP, tiếp tục thay file tại đúng thư mục cũ để giữ đường dẫn đã nạp. Đổi sang thư mục clone mới có thể tạo một bản cài khác với dữ liệu riêng.
-
-Chrome trên Windows/macOS không hỗ trợ tự cập nhật bản Load unpacked bằng một URL GitHub. Cách phân phối tự cập nhật cho người dùng Chrome thông thường là Chrome Web Store; self-hosting trên hai hệ điều hành này yêu cầu môi trường được quản lý bằng chính sách doanh nghiệp. [Tài liệu phân phối của Chrome](https://developer.chrome.com/docs/extensions/how-to/distribute).
-
 ## Tình trạng bản thử nghiệm
 
 Đã đạt **35/35 kiểm tra logic** và **33/33 kiểm tra trình duyệt giả lập**. Chưa xác nhận bản 1.1.0 đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
