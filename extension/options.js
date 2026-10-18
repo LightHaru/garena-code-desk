@@ -26,7 +26,11 @@ async function refresh() {
     el("refresh").disabled = state.meta.crawling;
     el("refresh").textContent = state.meta.crawling ? "↻ Đang quét…" : "↻ Quét nguồn ngay";
     el("seed-info").textContent = `Bản cài có sẵn danh sách nguồn ngày ${Desk.date(state.meta.seededAt)}. Bấm Quét nguồn để cập nhật.`;
-    el("crawl-summary").textContent = state.meta.crawling ? "Đang đọc dữ liệu công khai…" : `${state.meta.lastCrawlSummary || "Danh sách kèm theo chưa được đổi thử trên tài khoản."} · ${Desk.date(state.meta.lastCrawlAt || state.meta.lastCrawlAttemptAt)}`;
+    el("crawl-summary").textContent = state.meta.crawling ? "Đang đọc dữ liệu công khai…" : `${state.meta.lastCrawlSummary || "Danh sách kèm theo chưa được đổi thử trên tài khoản."} · ${Desk.date(state.meta.lastCrawlFinishedAt || state.meta.lastCrawlAttemptAt || state.meta.lastCrawlAt)}`;
+    const newCodes = state.meta.lastCrawlAddedCodes || [];
+    el("crawl-result").hidden = !newCodes.length;
+    el("crawl-added").textContent = `Đã tự lưu ${newCodes.length} code mới từ lượt quét${state.meta.crawling ? " đang chạy" : " vừa rồi"}.`;
+    el("view-new-codes").textContent = `Xem ${newCodes.length} code mới →`;
     el("next-alarm").textContent = nextAlarm ? `Lần tới: ${Desk.date(nextAlarm.scheduledTime)}` : "Lịch đang tắt";
     if (!loadedSettings) {
       el("daily-enabled").checked = state.settings.dailyEnabled;
@@ -58,20 +62,23 @@ function renderSources() {
 function renderCodes() {
   if (!currentState) return;
   const filter = el("filter").value, search = el("search").value.trim().toLowerCase(), account = currentState.account;
+  const newCodes = new Set(currentState.meta.lastCrawlAddedCodes || []);
   const records = Object.values(currentState.codes).filter(record => {
     if (search && !record.code.toLowerCase().includes(search)) return false;
     const status = GCA.codeStatus(record, account);
     if (filter === "all") return true;
+    if (filter === "new") return newCodes.has(record.code);
     if (filter === "queue") return ["pending", "processing", "retry", "future"].includes(status);
     if (filter === "archived") return ["used", "expired", "invalid", "exhausted", "account_limit", "dismissed"].includes(status);
     return status === filter;
-  });
+  }).sort((a, b) => Number(newCodes.has(b.code)) - Number(newCodes.has(a.code)) || b.firstSeen - a.firstSeen);
   page = Math.min(page, Math.max(0, Math.ceil(records.length / PAGE_SIZE) - 1));
   const items = records.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
   el("codes").replaceChildren();
   for (const record of items) {
     const row = document.createElement("tr"), status = GCA.codeStatus(record, account), result = record.accounts[GCA.accountKey(account)];
     row.append(textNode("td", record.code, "code"));
+    if (newCodes.has(record.code)) row.firstChild.append(textNode("span", "Mới từ lượt quét", "code-new"));
     const sourceCell = document.createElement("td"), source = record.sources[0];
     if (source?.url?.startsWith("https://")) {
       const link = textNode("a", source.name); link.href = source.url; link.target = "_blank"; link.rel = "noopener noreferrer"; sourceCell.append(link);
@@ -97,7 +104,14 @@ function renderCodes() {
 el("open-site").addEventListener("click", () => action("OPEN_SITE", {}, "Đã mở trang Garena. Kiểm tra tài khoản rồi bấm Bắt đầu đổi."));
 el("start").addEventListener("click", () => action("START", {}, "Đã mở lượt đổi trên Garena. Có thể đóng bảng này khi chạy."));
 el("pause").addEventListener("click", () => action("PAUSE", {}, "Đã dừng lấy code tiếp theo. Kết quả code đang gửi vẫn được ghi nhận."));
-el("refresh").addEventListener("click", () => action("REFRESH", {}, result => `Quét xong: thêm ${result.added} code mới${result.errors ? `; ${result.errors} nguồn lỗi, xem chi tiết bên dưới` : ""}.`));
+el("refresh").addEventListener("click", async () => {
+  const result = await action("REFRESH", {}, result => `${result.added ? `Đã tự thêm ${result.added} code mới vào hàng chờ` : "Quét xong: không có code mới; các mã tìm thấy đã có trong dữ liệu"}${result.errors ? `; ${result.errors} nguồn lỗi, xem chi tiết bên dưới` : ""}.`);
+  if (result?.added) { el("search").value = ""; el("filter").value = "queue"; page = 0; renderCodes(); }
+});
+el("view-new-codes").addEventListener("click", () => {
+  el("search").value = ""; el("filter").value = "new"; page = 0; renderCodes();
+  el("ket-qua").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+});
 el("import").addEventListener("click", async () => {
   const text = el("import-text").value;
   if (!text.trim()) { Desk.message("Anh dán danh sách code trước nhé.", true); return; }

@@ -172,7 +172,7 @@ async function refreshSources() {
   refreshJob = (async () => {
     const start = Date.now();
     const sources = (await readState()).sources.filter(item => item.enabled);
-    await mutate(state => { state.meta.crawling = true; state.meta.lastCrawlAttemptAt = start; state.meta.lastCrawlSummary = "Đang quét nguồn…"; });
+    await mutate(state => { state.meta.crawling = true; state.meta.lastCrawlAttemptAt = start; state.meta.lastCrawlAddedCodes = []; state.meta.lastCrawlSummary = "Đang quét; code mới được tự lưu vào hàng chờ…"; });
     const summary = { added: 0, found: 0, errors: 0, sources: sources.length };
     for (const source of sources) {
       try {
@@ -181,6 +181,9 @@ async function refreshSources() {
           const current = state.sources.find(item => item.id === source.id);
           if (!current || !current.enabled) return;
           const merged = GCA.mergeCodes(state, result.codes, source);
+          // Persist the new records and their scan list together, before reading
+          // the next source. Neither an open dashboard nor an import click is needed.
+          state.meta.lastCrawlAddedCodes.push(...merged.addedCodes);
           Object.assign(current, { lastChecked: Date.now(), found: merged.found, added: merged.added, error: "", warning: result.warning || "", checkedArticles: result.checked || 0 });
           if (result.cache) current.cache = result.cache;
           for (const article of result.provenance || []) GCA.mergeCodes(state, article.codes, { name: article.title, url: article.url });
@@ -197,7 +200,8 @@ async function refreshSources() {
     await mutate(state => {
       state.meta.crawling = false;
       if (!summary.errors) state.meta.lastCrawlAt = Date.now();
-      state.meta.lastCrawlSummary = `Thêm ${summary.added} code mới · ${summary.errors ? `${summary.errors} nguồn lỗi` : `${sources.length} nguồn đã quét`}`;
+      state.meta.lastCrawlFinishedAt = Date.now();
+      state.meta.lastCrawlSummary = `${summary.added ? `Đã tự thêm ${summary.added} code mới vào hàng chờ` : "Không có code mới; code đã có giữ nguyên lịch sử"} · ${summary.errors ? `${summary.errors} nguồn lỗi` : `${sources.length} nguồn đã quét`}`;
     });
     return summary;
   })().finally(() => { refreshJob = null; });

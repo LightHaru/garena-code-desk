@@ -39,14 +39,14 @@
     };
   }
   function mergeCodes(state, values, source, now = Date.now()) {
-    let added = 0;
+    const addedCodes = [];
     const list = uniqueCodes(values);
     for (const code of list) {
       let record = Object.hasOwn(state.codes, code) ? state.codes[code] : null;
       if (!record) {
         record = { code, firstSeen: now, lastSeen: now, globalStatus: "active", sources: [], accounts: {} };
         state.codes[code] = record;
-        added++;
+        addedCodes.push(code);
       }
       record.lastSeen = now;
       if (source && !record.sources.some(item => item.url === source.url)) {
@@ -54,7 +54,7 @@
       }
       // An archived record is a tombstone. A crawl never reactivates it.
     }
-    return { added, found: list.length };
+    return { added: addedCodes.length, found: list.length, addedCodes };
   }
   function accountKey(account) { return `u:${account}`; }
   function codeStatus(record, account) {
