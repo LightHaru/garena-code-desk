@@ -8,32 +8,30 @@
 
 Tiện ích Chrome trên **máy tính** giúp quản lý và tự nhập giftcode trên trang đổi quà Garena Delta Force Việt Nam.
 
-**Bản thử nghiệm 1.2.2 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
+**Bản thử nghiệm 1.2.3 · Miễn phí · Cài từ thư mục.** Chưa phát hành trên Chrome Web Store.
 
 ## Tải về
 
-**[Tải Garena-Code-Desk-v1.2.2.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.2.2/Garena-Code-Desk-v1.2.2.zip)**
+**[Tải Garena-Code-Desk-v1.2.3.zip](https://github.com/LightHaru/garena-code-desk/releases/download/v1.2.3/Garena-Code-Desk-v1.2.3.zip)**
 
 [Tất cả phiên bản](https://github.com/LightHaru/garena-code-desk/releases) · [Website](https://lightharu.github.io/garena-code-desk-site/) · [Quyền riêng tư](https://lightharu.github.io/garena-code-desk-site/privacy.html) · [Báo lỗi](https://github.com/LightHaru/garena-code-desk/issues)
 
-Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.2.2.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
+Trong phần Assets của bản phát hành, chọn **Garena-Code-Desk-v1.2.3.zip** để tải gói tiện ích và hướng dẫn gọn sẵn. "Source code" là bản chụp toàn repository do GitHub tự tạo. Mã tiện ích hiện nằm trong thư mục [`extension/`](extension).
 
-## Bản 1.2.2 có gì mới?
+## Bản 1.2.3 có gì mới?
 
 | Khu vực | Thay đổi |
 |---|---|
-| Code lỗi bỏ qua luôn | Không hẹn 24 giờ; không gửi lại trong lượt sau hoặc sau khi quét nguồn |
-| Cập nhật lịch sử cũ | Chuyển Chờ thử lại / Chưa mở đổi / Cần kiểm tra thành Đã bỏ qua; giữ nguyên phản hồi, thời điểm và số lần đã thử |
-| Nút không mất khi rê chuột | Giữ ảnh nền và chữ rõ ở trạng thái hover; nút Chọn file hiển thị gọn |
-| Quét và tự thêm | Code mới tự lưu vào hàng chờ, báo rõ số đã thêm; không cần dán hoặc bấm nhập lại |
-| Xem code mới | Nút **Xem code mới**, bộ lọc **Mới từ lượt quét** và nhãn trên từng mã; mã mới lên đầu danh sách |
-| Delta Force | Hackclaw, Vyron, D-Wolf skin Subrosa và **Stinger chế thành chuột quân y**, giữ tóc, tai nghe và trang phục để nhận ra đặc vụ |
-| Popup | Khung máy cố định theo cửa sổ, còn nguyên khi cuộn tới cuối; sửa thanh cuộn ngang thừa |
-| Nút & bảng quản lý | Bề mặt nút quân dụng và khung tạo bằng ImageGen; chữ, bộ đếm và thao tác là HTML thật |
-| Khung trên Garena | Hình mới, Bắt đầu / Dừng / Tiếp tục, bốn bộ đếm và tiến độ tại chỗ |
-| Nguồn code | Gợi ý điền sẵn **Code Mới, FPT Shop, Điện máy XANH**; cấp quyền cho tên miền người dùng chọn |
-| Nhập nhanh | Nút **Dán 2 mã tìm thêm · 18/10** điền hai ứng viên vào ô để bạn xem rồi thêm vào hàng chờ |
-| Website & hướng dẫn | Nền bốn đặc vụ xuyên suốt trang, ảnh giao diện mới, báo cáo nguồn và ba kênh Củ Cải |
+| Quét thêm mã mới | **Code Mới được thêm mặc định**, bên cạnh XemGì và tin Garena; bản cài cũ tự nhận nguồn mới khi cập nhật |
+| Giữ lựa chọn của bạn | Không thêm trùng nguồn đã có; nguồn Code Mới từng tự thêm và tắt vẫn giữ tắt |
+| Tự lưu vào hàng chờ | Quét ngày 25/10 phát hiện **8 ứng viên chưa có trong 242 mã XemGì**, gộp 250 mã; quét lại không tăng trùng |
+| Trạng thái nguồn rõ hơn | Phân biệt không có mã mới với nguồn lỗi/đọc một phần; lượt bị gián đoạn không khóa nút quét mãi |
+| Đọc đúng danh sách | Giữ chữ hoa/thường, nhận mã không bắt đầu bằng DF; không nhập tiêu đề “Codes” thành giftcode |
+| Nguồn gợi ý | Thay link FPT Shop trả 404 bằng **Download.com.vn**; giữ Điện máy XANH và cấu hình HTML tùy chọn |
+| Lịch sử xử lý | Code đã nhận/đã dùng/đã bỏ qua giữ nguyên; code lỗi không được tự gửi lại |
+| Giao diện & hướng dẫn | Giữ artwork Delta Force, khung nổi, nút điều khiển và ba kênh Củ Cải; ảnh hướng dẫn chụp lại từ 1.2.3 |
+
+Bản 1.2.3 thêm quyền đọc **`https://codemoi.net/*`** để quét Code Mới. Các nguồn tùy chọn khác vẫn xin quyền theo tên miền khi bạn thêm.
 
 Artwork minh họa cộng đồng được tạo bằng ImageGen theo ảnh nhân vật tham khảo. Avatar và icon riêng của Củ Cải giữ đúng nhận diện kênh.
 
@@ -43,15 +41,15 @@ Giữ bản vá CSP từ 1.1.2: tạm bỏ URL javascript của nút Đổi/Đó
 
 Ảnh chụp từ **mã giao diện thật với dữ liệu mẫu**, chưa phải ảnh xác nhận đã cài hoặc đổi quà trên tài khoản Garena thật.
 
-![Bảng quản lý Code Desk 1.2.2 — dữ liệu mẫu](media/dashboard-v1.2.2.webp)
+![Bảng quản lý Code Desk 1.2.3 — dữ liệu mẫu](media/dashboard-v1.2.3.webp)
 
-![Code lỗi đã bỏ qua, không có nút Thử lại — dữ liệu mẫu](media/skipped-errors-v1.2.2.webp)
+![Code lỗi đã bỏ qua, không có nút Thử lại — dữ liệu mẫu](media/skipped-errors-v1.2.3.webp)
 
-![Code mới tự vào hàng chờ và có bộ lọc riêng — dữ liệu mẫu](media/new-codes-v1.2.2.webp)
+![Code mới tự vào hàng chờ và có bộ lọc riêng — dữ liệu mẫu](media/new-codes-v1.2.3.webp)
 
-<p><img src="media/popup-v1.2.2.webp" width="320" alt="Đầu popup Code Desk 1.2.2 — dữ liệu mẫu"> <img src="media/popup-bottom-v1.2.2.webp" width="320" alt="Cuối popup Code Desk 1.2.2, khung còn nguyên khi cuộn — dữ liệu mẫu"></p>
+<p><img src="media/popup-v1.2.3.webp" width="320" alt="Đầu popup Code Desk 1.2.3 — dữ liệu mẫu"> <img src="media/popup-bottom-v1.2.3.webp" width="320" alt="Cuối popup Code Desk 1.2.3, khung còn nguyên khi cuộn — dữ liệu mẫu"></p>
 
-![Khung nổi Code Desk 1.2.2 — dữ liệu mẫu](media/panel-v1.2.2.webp)
+![Khung nổi Code Desk 1.2.3 — dữ liệu mẫu](media/panel-v1.2.3.webp)
 
 **[Hướng dẫn có ảnh →](https://lightharu.github.io/garena-code-desk-site/guide.html)**
 
@@ -74,28 +72,39 @@ Bạn có thể dùng tab khác hoặc ứng dụng khác khi đang chạy. Gi�
 
 Trong popup có **Quét nguồn & đổi ngay**. Bảng quản lý hỗ trợ nhập TXT/CSV/JSON, thêm nguồn HTTPS, lịch quét và xuất lịch sử. Quét nguồn hằng ngày mặc định 09:00 theo giờ Việt Nam; tự đổi sau lịch quét là tùy chọn riêng, mặc định tắt.
 
-## Tìm thêm nguồn code
+## Nguồn quét và những mã bị bỏ sót
 
-Khảo sát ngày **18/10/2026**: đọc thêm tám trang ngoài XemGì. So với 242 chuỗi ứng viên từ lần quét XemGì, có sáu chuỗi mới; chỉ ưu tiên hai mã dưới đây vì xuất hiện trên nhiều trang phù hợp hơn. Nhiều trang có thể sao chép cùng danh sách.
+Đối chiếu nguồn công khai ngày **25/10/2026**: XemGì vẫn có 242 ứng viên, Code Mới đọc được 41 mã. Hợp hai nguồn là **250 ứng viên**, gồm 8 mã chưa có trong danh sách XemGì:
 
-- **WELCOMETODF** — thấy trên 5 trang.
-- **DFVNA4T8Z6P3** — thấy trên 3 trang.
+```text
+SsCkDfxY5AkdZqiJLkXq
+POCSEEYOUTMR
+POCISHERE
+WHOISPOCKING
+POCS2S2
+HITTHEROADTODFI
+DFVNA4T8Z6P3
+WELCOMETODF
+```
 
-**Chưa xác nhận hai mã còn đổi được.** Kết quả và điều kiện nhận quà do Garena quyết định.
+Đây là mã xuất hiện trong nguồn, **chưa xác nhận còn hạn hoặc đổi được**. Garena xác nhận kết quả khi bạn đổi.
 
-Trong bảng quản lý → **+ Thêm nguồn** → **Chọn nguồn đã khảo sát**, có ba cấu hình điền sẵn:
+**Nguồn mặc định:** [XemGì](https://xemgi.de/codes), [tin Garena Việt Nam](https://deltaforce.garena.vn/) và [Code Mới](https://codemoi.net/games/delta-force/). Bản cài cũ tự được thêm Code Mới sau khi cập nhật 1.2.3, trừ khi đã có nguồn này; trạng thái bật/tắt sẵn có được giữ nguyên.
 
-| Nguồn | Ứng viên đọc được trong lần khảo sát |
-|---|---:|
-| [Code Mới](https://codemoi.net/games/delta-force/) | 20 |
-| [FPT Shop](https://fptshop.com.vn/tin-tuc/danh-gia/code-delta-force-184570) | 11 |
-| [Điện máy XANH](https://www.dienmayxanh.com/kinh-nghiem-hay/code-delta-force-garena-moi-nhat-1591472) | 19 |
+Trong bảng quản lý → **+ Thêm nguồn**, có cấu hình điền sẵn:
 
-Chọn nguồn để điền URL và vùng chứa code, rồi bấm **Cấp quyền & thêm nguồn**. Sau khi được cấp quyền, nguồn dùng lịch quét hiện có. Số mã có thể thay đổi; XemGì và tin Garena vẫn là hai nguồn mặc định.
+| Nguồn | Ứng viên đọc được ngày 25/10 | Cách dùng |
+|---|---:|---|
+| [Code Mới](https://codemoi.net/games/delta-force/) | 41 | Đã có mặc định; kiểm tra nguồn đang bật |
+| [Download.com.vn](https://download.com.vn/code-game-delta-force-195638) | 24 | Chọn rồi bấm Cấp quyền & thêm nguồn |
+| [Điện máy XANH](https://www.dienmayxanh.com/kinh-nghiem-hay/code-delta-force-garena-moi-nhat-1591472) | 19 | Chọn rồi bấm Cấp quyền & thêm nguồn |
 
-[Báo cáo đủ tám nguồn](https://lightharu.github.io/garena-code-desk-site/assets/nguon-giftcode-20261018.md) · [Danh sách hai mã TXT](https://lightharu.github.io/garena-code-desk-site/assets/code-uu-tien-20261018.txt)
+Các danh sách có nhiều mã trùng và mã cũ. Không cộng các cột thành số code mới. Gợi ý FPT Shop đã được thay vì link hiện trả HTTP 404; nguồn FPT bạn tự thêm trước đây có thể tắt trong bảng quản lý.
+
+[Báo cáo nguồn 25/10](https://lightharu.github.io/garena-code-desk-site/assets/nguon-giftcode-20261025.md) · [Danh sách 8 mã TXT](https://lightharu.github.io/garena-code-desk-site/assets/code-uu-tien-20261025.txt)
 
 Nguồn chính thức: [Garena Việt Nam](https://deltaforce.garena.vn/), [YouTube GarenaDeltaForceVN](https://www.youtube.com/@GarenaDeltaForceVN), [TikTok garenadeltaforcevn](https://www.tiktok.com/@garenadeltaforcevn). Bộ quét hiện đọc chữ công khai; chưa đọc bình luận, ảnh, livestream hoặc nhóm riêng tư.
+
 ## Theo dõi kết quả
 
 - Nhớ code đã nhận/đã dùng theo tên hiển thị tài khoản.
@@ -103,15 +112,15 @@ Nguồn chính thức: [Garena Việt Nam](https://deltaforce.garena.vn/), [YouT
 - Code lỗi, kể cả cấu hình gói quà 400073, được bỏ qua luôn và tiếp tục các code khác; không hẹn thử lại.
 - Lỗi mạng, đăng nhập, xác minh hoặc mất phản hồi: bỏ qua code đã gửi và tạm dừng lượt; xử lý trên Garena rồi tiếp tục các code còn lại. Với HTTP 429, chờ ít nhất 15 phút.
 
-Code tìm thấy là ứng viên; quyền nhận quà và hiệu lực do Garena quyết định. Bộ quét đọc nguồn chữ công khai XemGì và một số bài tin Garena, không bao phủ bình luận, ảnh, livestream hoặc nhóm riêng tư. Lịch sử dùng tên hiển thị; tài khoản trùng tên nên dùng hồ sơ Chrome riêng.
+Code tìm thấy là ứng viên; quyền nhận quà và hiệu lực do Garena quyết định. Bộ quét đọc nguồn chữ công khai XemGì, Code Mới và một số bài tin Garena, không bao phủ bình luận, ảnh, livestream hoặc nhóm riêng tư. Lịch sử dùng tên hiển thị; tài khoản trùng tên nên dùng hồ sơ Chrome riêng.
 
 ## Cập nhật
 
-Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đợi kết quả đang gửi; tải ZIP mới, chép nội dung `extension` vào đúng thư mục cũ, bấm **Tải lại** tiện ích trong `chrome://extensions` và kiểm tra số **1.2.2**, rồi tải lại trang Garena. Giữ đường dẫn thư mục đã nạp để tiếp tục dùng dữ liệu của bản cài đó. Mục Lỗi của Chrome có thể còn giữ báo cáo cũ; xóa các báo cáo đó rồi bắt đầu một lượt mới để kiểm tra lỗi có tái xuất hiện hay không.
+Bản cài từ thư mục cần cập nhật thủ công. Dừng lượt và đợi kết quả đang gửi; tải ZIP mới, chép nội dung `extension` vào đúng thư mục cũ, bấm **Tải lại** tiện ích trong `chrome://extensions` và kiểm tra số **1.2.3**, rồi tải lại trang Garena. Nếu Chrome hỏi quyền mới, kiểm tra đúng `codemoi.net` để cho phép quét nguồn này. Bấm **Quét nguồn ngay**, sau đó **Xem code mới**. Giữ đường dẫn thư mục đã nạp để tiếp tục dùng dữ liệu của bản cài đó. Mục Lỗi của Chrome có thể còn giữ báo cáo cũ; xóa các báo cáo đó rồi bắt đầu một lượt mới để kiểm tra lỗi có tái xuất hiện hay không.
 
 ## Tình trạng bản thử nghiệm
 
-Đã đạt **46/46 kiểm tra logic**, **38/38 kiểm tra trình duyệt mô phỏng** và **3/3 cấu hình nguồn** bằng DOMParser thật trên HTML công khai đã lưu. Bản 1.2.2 đã kiểm tra chuyển dữ liệu chờ cũ sang Đã bỏ qua, không gửi lại lỗi sau khi quét hoặc chạy lượt mới và tạm dừng khi bị chặn phiên/kết nối. Ảnh hướng dẫn được chụp lại từ bản 1.2.2. Các sửa hover, tự thêm code và bố cục từ 1.2.1 được giữ lại. Chưa xác nhận bản 1.2.2 trong môi trường content script cô lập trên Chrome đã cài, đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Trang Garena thay đổi có thể cần cập nhật tiện ích. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
+Đã đạt **53/53 kiểm tra logic**, **44/44 kiểm tra trình duyệt mô phỏng** và **3/3 cấu hình nguồn** bằng DOMParser thật trên HTML công khai đã lưu ngày 25/10. Luồng quét chạy bằng mã thật của tiện ích đã tự lưu 8 mã còn thiếu, tăng 242 → 250, giữ lịch sử code lỗi/đã nhận và không thêm trùng ở lượt sau. Ảnh giao diện 1.2.3 dùng dữ liệu mẫu được ghi rõ trên ảnh. Chưa xác nhận bản 1.2.3 trong môi trường content script cô lập trên Chrome đã cài, đổi quà trên tài khoản Garena thật hoặc chạy lịch qua một ngày thật. Máy ngủ, Chrome đóng, tab đóng/treo, phiên hết hạn hoặc xác minh sẽ ảnh hưởng lượt chạy.
 
 Gửi báo lỗi tại [Issues](https://github.com/LightHaru/garena-code-desk/issues) kèm phiên bản và thông báo. Không đưa mật khẩu, cookie, OTP, token hoặc thông tin riêng vào báo lỗi công khai.
 

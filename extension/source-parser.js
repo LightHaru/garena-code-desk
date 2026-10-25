@@ -14,6 +14,9 @@
       const first = table.querySelector("tr");
       if (!/code|cdkey|mã quà/i.test(first?.textContent || "")) continue;
       for (const row of table.querySelectorAll("tr")) {
+        // The first row identifies this as a code table, including sites that
+        // use <td> for headers. "Codes" must not become a giftcode candidate.
+        if (row === first) continue;
         const cell = row.querySelector("td");
         const value = cell?.textContent.trim();
         if (validCode(value)) found.push(value);

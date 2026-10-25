@@ -106,7 +106,8 @@ async function initialize() {
     if (!state) {
       state = GCA.freshState();
       const seed = await (await fetch(chrome.runtime.getURL("seed.json"))).json();
-      GCA.mergeCodes(state, seed.codes, { name: "XemGì · bản kèm khi cài", url: "https://xemgi.de/codes" }, seed.fetchedAt);
+      const groups = seed.sources || [{ name: "XemGì · bản kèm khi cài", url: "https://xemgi.de/codes", codes: seed.codes }];
+      for (const source of groups) GCA.mergeCodes(state, source.codes, source, seed.fetchedAt);
       state.meta.seededAt = seed.fetchedAt;
       await chrome.storage.local.set({ [STORAGE_KEY]: state });
     }
@@ -117,6 +118,14 @@ async function initialize() {
       if (state.run.status !== "running" && !state.run.current && state.meta.noRetryMigrated) state.run.reason = `Đã bỏ qua ${state.meta.noRetryMigrated} kết quả lỗi/chờ cũ; không tự thử lại. Có thể chạy các code còn lại.`;
       await chrome.storage.local.set({ [STORAGE_KEY]: state });
     }
+    const upgradedSources = GCA.upgradeSources(state);
+    if (state.meta.crawling) {
+      // A newly started worker has no refreshJob to finish an interrupted scan.
+      // Keep already saved codes and release the UI so a new scan can be started.
+      state.meta.crawling = false;
+      state.meta.lastCrawlSummary = "Lượt quét trước bị gián đoạn. Code đã lưu được giữ lại; bấm Quét nguồn ngay để kiểm tra tiếp.";
+      await chrome.storage.local.set({ [STORAGE_KEY]: state });
+    } else if (upgradedSources) await chrome.storage.local.set({ [STORAGE_KEY]: state });
     await ensureDailyAlarm(state);
   })().catch(error => { initializing = undefined; throw error; });
   return initializing;
@@ -169,7 +178,7 @@ async function refreshSources() {
     const start = Date.now();
     const sources = (await readState()).sources.filter(item => item.enabled);
     await mutate(state => { state.meta.crawling = true; state.meta.lastCrawlAttemptAt = start; state.meta.lastCrawlAddedCodes = []; state.meta.lastCrawlSummary = "Đang quét; code mới được tự lưu vào hàng chờ…"; });
-    const summary = { added: 0, found: 0, errors: 0, sources: sources.length };
+    const summary = { added: 0, found: 0, errors: 0, sources: sources.length, completed: 0, partial: 0 };
     for (const source of sources) {
       try {
         const result = await GCASources.crawlSource(source, { fetchText, parseHtml, cache: source.cache || {} });
@@ -182,6 +191,8 @@ async function refreshSources() {
           state.meta.lastCrawlAddedCodes.push(...merged.addedCodes);
           Object.assign(current, { lastChecked: Date.now(), found: merged.found, added: merged.added, error: "", warning: result.warning || "", checkedArticles: result.checked || 0 });
           if (result.cache) current.cache = result.cache;
+          summary.completed++;
+          if (result.partial) summary.partial++;
           for (const article of result.provenance || []) GCA.mergeCodes(state, article.codes, { name: article.title, url: article.url });
           summary.added += merged.added; summary.found += merged.found;
         });
@@ -195,9 +206,10 @@ async function refreshSources() {
     }
     await mutate(state => {
       state.meta.crawling = false;
-      if (!summary.errors) state.meta.lastCrawlAt = Date.now();
+      if (summary.completed && !summary.errors && !summary.partial) state.meta.lastCrawlAt = Date.now();
       state.meta.lastCrawlFinishedAt = Date.now();
-      state.meta.lastCrawlSummary = `${summary.added ? `Đã tự thêm ${summary.added} code mới vào hàng chờ` : "Không có code mới; code đã có giữ nguyên lịch sử"} · ${summary.errors ? `${summary.errors} nguồn lỗi` : `${sources.length} nguồn đã quét`}`;
+      summary.message = GCA.crawlSummary(summary);
+      state.meta.lastCrawlSummary = summary.message;
     });
     return summary;
   })().finally(() => { refreshJob = null; });

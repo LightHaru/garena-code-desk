@@ -3,6 +3,7 @@
   "use strict";
   const DAY = 86400000;
   const REDEEM_URL = "https://redeem.df.garena.sg/vi/cdkgarena.html";
+  const CODEMOI_SOURCE = Object.freeze({ id: "codemoi", kind: "html", name: "Code Mới · Delta Force", url: "https://codemoi.net/games/delta-force/", selector: "code", enabled: true, builtIn: true });
   const STATUS_LABELS = {
     pending: "Chờ đổi", processing: "Đang đổi", redeemed: "Đã nhận quà", used: "Đã dùng",
     expired: "Hết hạn", invalid: "Không hợp lệ", exhausted: "Hết lượt", account_limit: "Đã đủ gói",
@@ -31,11 +32,31 @@
       version: 1, codes: {}, account: "", settings: { dailyEnabled: true, dailyHour: 9, dailyMinute: 0, autoRedeem: false, delaySeconds: 5 },
       sources: [
         { id: "xemgi", kind: "xemgi", name: "XemGì · Delta Force", url: "https://xemgi.de/codes", enabled: true },
-        { id: "garena", kind: "garena", name: "Garena Việt Nam · Tin chính thức", url: "https://deltaforce.garena.vn/", enabled: true }
+        { id: "garena", kind: "garena", name: "Garena Việt Nam · Tin chính thức", url: "https://deltaforce.garena.vn/", enabled: true },
+        { ...CODEMOI_SOURCE }
       ],
       run: { status: "idle", reason: "Sẵn sàng", processed: 0 },
       meta: { createdAt: now, lastCrawlAt: 0, crawling: false, lastCrawlSummary: "", seededAt: 0 }
     };
+  }
+  function upgradeSources(state) {
+    if (state.meta.sourcesSchema >= 1) return false;
+    // Match the URL as well as the ID: an earlier manual preset must keep its
+    // enabled setting and must not be duplicated by an upgrade.
+    const target = CODEMOI_SOURCE.url.replace(/\/+$/, "");
+    if (!state.sources.some(source => String(source.url).replace(/\/+$/, "") === target)) {
+      let id = CODEMOI_SOURCE.id;
+      while (state.sources.some(source => source.id === id)) id += "-default";
+      state.sources.push({ ...CODEMOI_SOURCE, id });
+    }
+    state.meta.sourcesSchema = 1;
+    return true;
+  }
+  function crawlSummary({ added = 0, errors = 0, sources = 0, completed = 0, partial = 0 }) {
+    if (!sources) return "Chưa bật nguồn nào. Bật nguồn rồi quét lại.";
+    if (!completed) return `Chưa quét được nguồn nào · ${errors} nguồn lỗi; chưa thể kết luận có code mới.`;
+    const result = added ? `Đã tự thêm ${added} code mới vào hàng chờ` : errors || partial ? "Chưa thấy code mới trong phần nguồn đọc được" : "Không có code mới; code đã có giữ nguyên lịch sử";
+    return `${result} · ${completed}/${sources} nguồn đã quét${errors ? ` · ${errors} nguồn lỗi` : ""}${partial ? ` · ${partial} nguồn chỉ đọc được một phần` : ""}`;
   }
   function mergeCodes(state, values, source, now = Date.now()) {
     const addedCodes = [];
@@ -174,7 +195,7 @@
     if (host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || !host.includes(".") || /^[\d.]+$/.test(host) || host.includes(":")) throw new Error("Nguồn cần dùng tên miền công khai.");
     return url;
   }
-  const api = { DAY, REDEEM_URL, STATUS_LABELS, validCode, uniqueCodes, parseImport, freshState, mergeCodes, accountKey, codeStatus, eligible, stats, normalize, skipError, classify, applyResult, migrateNoRetry, nextDailyAt, dailyDue, publicUrl };
+  const api = { DAY, REDEEM_URL, STATUS_LABELS, validCode, uniqueCodes, parseImport, freshState, upgradeSources, crawlSummary, mergeCodes, accountKey, codeStatus, eligible, stats, normalize, skipError, classify, applyResult, migrateNoRetry, nextDailyAt, dailyDue, publicUrl };
   root.GCA = Object.freeze(api);
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(globalThis);

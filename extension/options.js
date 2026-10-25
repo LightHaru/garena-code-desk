@@ -106,7 +106,7 @@ el("open-site").addEventListener("click", () => action("OPEN_SITE", {}, "Đã m�
 el("start").addEventListener("click", () => action("START", {}, "Đã mở lượt đổi trên Garena. Có thể đóng bảng này khi chạy."));
 el("pause").addEventListener("click", () => action("PAUSE", {}, "Đã dừng lấy code tiếp theo. Kết quả code đang gửi vẫn được ghi nhận."));
 el("refresh").addEventListener("click", async () => {
-  const result = await action("REFRESH", {}, result => `${result.added ? `Đã tự thêm ${result.added} code mới vào hàng chờ` : "Quét xong: không có code mới; các mã tìm thấy đã có trong dữ liệu"}${result.errors ? `; ${result.errors} nguồn lỗi, xem chi tiết bên dưới` : ""}.`);
+  const result = await action("REFRESH", {}, result => result.message || GCA.crawlSummary(result));
   if (result?.added) { el("search").value = ""; el("filter").value = "queue"; page = 0; renderCodes(); }
 });
 el("view-new-codes").addEventListener("click", () => {
@@ -142,7 +142,7 @@ el("source-preset").addEventListener("change", () => {
 el("research-codes").addEventListener("click", () => {
   el("import-text").value = GCASourceSuggestions.priorityCodes.join("\n");
   el("import-text").focus();
-  Desk.message("Đã dán 2 mã khảo sát ngày 18/10. Bấm Thêm vào hàng chờ để nhập; Garena sẽ xác nhận hiệu lực khi đổi.");
+  Desk.message(`Đã dán ${GCASourceSuggestions.priorityCodes.length} mã đối chiếu ngày ${GCASourceSuggestions.checkedAt}. Bấm Thêm vào hàng chờ để nhập; Garena sẽ xác nhận hiệu lực khi đổi.`);
 });
 el("add-source-toggle").addEventListener("click", () => { el("source-form").hidden = !el("source-form").hidden; });
 el("source-form").addEventListener("submit", async event => {

@@ -26,7 +26,7 @@
       .box:has(.body[hidden]){padding:13px 17px}.box:has(.body[hidden]) .top{min-height:60px;padding:8px 10px}
       @media(max-width:360px){.box{padding:16px}.number{font-size:22px}.hint{max-width:125px}.title{font-size:16px}.top>div{max-width:185px}}
     </style><section class="box" aria-label="Garena Code Desk">
-      <div class="top"><div><div class="brand">CỦ CẢI · CODE DESK <span>1.2.2</span></div><b class="title">ĐỔI QUÀ TỰ ĐỘNG</b><div class="mini" hidden></div></div><button class="hide" aria-label="Thu gọn" aria-expanded="true">−</button></div>
+      <div class="top"><div><div class="brand">CỦ CẢI · CODE DESK <span>1.2.3</span></div><b class="title">ĐỔI QUÀ TỰ ĐỘNG</b><div class="mini" hidden></div></div><button class="hide" aria-label="Thu gọn" aria-expanded="true">−</button></div>
       <div class="body"><div class="state-row"><span class="status" data-state="idle">ĐANG KẾT NỐI</span><span class="account"></span></div>
       <div class="counts" aria-label="Bộ đếm code"><div class="count"><b class="number" data-count="processed">0</b><span>Đã xử lý</span></div><div class="count"><b class="number" data-count="waiting">0</b><span>Còn chờ</span></div><div class="count success"><b class="number" data-count="redeemed">0</b><span>Đã nhận</span></div><div class="count"><b class="number" data-count="skipped">0</b><span>Bỏ qua</span></div></div>
       <div class="progress-label"><span>Tiến độ lượt này</span><b class="progress-text">0 / 0</b></div><progress max="1" value="0" aria-label="Tiến độ lượt đổi code"></progress>

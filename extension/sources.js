@@ -30,7 +30,7 @@
         values.push(...codes);
       } catch (error) { warnings.push(`Danh sách trang: ${error.message}`); }
       if (!values.length) throw new Error(warnings.join(" ") || "Nguồn không trả về code.");
-      return { codes: uniqueCodes(values), warning: warnings.join(" · ") };
+      return { codes: uniqueCodes(values), warning: warnings.join(" · "), partial: warnings.length > 0 };
     }
     if (source.kind === "garena") {
       const home = await asJson("https://deltaforce.garena.vn/api/app/home");
@@ -63,7 +63,13 @@
     }
     const text = await fetchText(source.url);
     if (source.kind === "json" || source.kind === "text") return { codes: root.GCA.parseImport(text) };
-    if (source.kind === "html") return { codes: await parseHtml(text, source.selector || "") };
+    if (source.kind === "html") {
+      const codes = await parseHtml(text, source.selector || "");
+      // Empty or moved layouts must be visible as a source error, never a
+      // successful "no new code" result that hides a broken selector.
+      if (!codes.length) throw new Error("Không nhận dạng được giftcode trong trang/vùng đã chọn. Nguồn có thể đổi bố cục hoặc không còn danh sách code.");
+      return { codes };
+    }
     throw new Error("Loại nguồn chưa được hỗ trợ.");
   }
   root.GCASources = { crawlSource };
