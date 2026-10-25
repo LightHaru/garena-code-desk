@@ -27,7 +27,7 @@ async function refresh() {
     el("refresh").disabled = state.meta.crawling;
     el("refresh").textContent = state.meta.crawling ? "↻ Đang quét…" : "↻ Quét nguồn ngay";
     el("seed-info").textContent = `Bản cài có sẵn danh sách nguồn ngày ${Desk.date(state.meta.seededAt)}. Bấm Quét nguồn để cập nhật.`;
-    el("crawl-summary").textContent = state.meta.crawling ? "Đang đọc dữ liệu công khai…" : `${state.meta.lastCrawlSummary || "Danh sách kèm theo chưa được đổi thử trên tài khoản."} · ${Desk.date(state.meta.lastCrawlFinishedAt || state.meta.lastCrawlAttemptAt || state.meta.lastCrawlAt)}`;
+    el("crawl-summary").textContent = state.meta.crawling ? state.meta.lastCrawlSummary || "Đang đọc dữ liệu công khai…" : `${state.meta.lastCrawlSummary || "Danh sách kèm theo chưa được đổi thử trên tài khoản."} · ${Desk.date(state.meta.lastCrawlFinishedAt || state.meta.lastCrawlAttemptAt || state.meta.lastCrawlAt)}`;
     const newCodes = state.meta.lastCrawlAddedCodes || [];
     el("crawl-result").hidden = !newCodes.length;
     el("crawl-added").textContent = `Đã tự lưu ${newCodes.length} code mới từ lượt quét${state.meta.crawling ? " đang chạy" : " vừa rồi"}.`;
@@ -53,7 +53,7 @@ function renderSources() {
     info.append(textNode("p", source.error ? `Lỗi: ${source.error}` : source.lastChecked ? `Đã kiểm tra ${Desk.date(source.lastChecked)}${source.checkedArticles ? ` · ${source.checkedArticles} bài tin` : ""}` : "Sẽ quét khi cài xong và theo lịch hằng ngày.", source.error ? "source-error" : ""));
     if (source.warning) info.append(textNode("p", source.warning));
     const summary = textNode("div", "", "source-summary");
-    summary.append(textNode("div", typeof source.found === "number" ? `${source.found} code tìm thấy` : "Chưa quét"), textNode("small", typeof source.added === "number" ? `+${source.added} mới` : ""));
+    summary.append(textNode("div", source.error ? "Chưa đọc được lượt này" : typeof source.found === "number" ? `${source.found} code tìm thấy` : "Chưa quét"), textNode("small", typeof source.added === "number" ? `+${source.added} mới` : ""));
     if (!["xemgi", "garena"].includes(source.id)) {
       const remove = textNode("button", "Bỏ nguồn", "row-action secondary"); remove.addEventListener("click", () => action("SOURCE_REMOVE", { id: source.id }, "Đã bỏ nguồn; các code đã lấy vẫn còn trong lịch sử.")); summary.append(remove);
     }
@@ -138,11 +138,6 @@ el("source-preset").addEventListener("change", () => {
   el("source-url").value = preset.url;
   el("source-kind").value = "html";
   el("source-selector").value = preset.selector;
-});
-el("research-codes").addEventListener("click", () => {
-  el("import-text").value = GCASourceSuggestions.priorityCodes.join("\n");
-  el("import-text").focus();
-  Desk.message(`Đã dán ${GCASourceSuggestions.priorityCodes.length} mã đối chiếu ngày ${GCASourceSuggestions.checkedAt}. Bấm Thêm vào hàng chờ để nhập; Garena sẽ xác nhận hiệu lực khi đổi.`);
 });
 el("add-source-toggle").addEventListener("click", () => { el("source-form").hidden = !el("source-form").hidden; });
 el("source-form").addEventListener("submit", async event => {

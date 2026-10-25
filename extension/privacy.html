@@ -9,7 +9,7 @@
   </style>
 </head>
 <body>
-  <small>CỦ CẢI · GARENA CODE DESK · PHIÊN BẢN 1.2.3</small>
+  <small>CỦ CẢI · GARENA CODE DESK · PHIÊN BẢN 1.2.4</small>
   <h1>Chính sách quyền riêng tư</h1>
   <p class="muted">Cập nhật ngày 25/10/2026 · Nhà phát triển: Củ Cải Phẫn Nộ</p>
   <p class="summary">Tiện ích quản lý và tự nhập giftcode Delta Force trên trang đổi quà Garena. Tên hiển thị, danh sách code, cài đặt và lịch sử được xử lý trong hồ sơ Chrome đang cài. Tiện ích không có máy chủ nhận lịch sử của bạn, không có quảng cáo hoặc phân tích hành vi.</p>
@@ -26,7 +26,7 @@
   <h2>2. Kết nối mạng và bên nhận</h2>
   <ul>
     <li><strong>Garena:</strong> khi bạn bắt đầu hoặc đã bật tự đổi sau lịch quét, tiện ích điền code và bấm nút trên trang Garena. Trang Garena thực hiện yêu cầu đổi quà bằng phiên đăng nhập sẵn của bạn với dịch vụ đổi quà của họ, gồm tên miền <code>sg-act.playerinfinite.com</code>. Dữ liệu đăng nhập do trang này quản lý.</li>
-    <li><strong>Nguồn công khai:</strong> tiện ích tải danh sách code, dữ liệu trang và tin từ <code>xemgi.de</code>, <code>deltaforce.garena.vn</code>, <code>codemoi.net</code> và nguồn HTTPS bạn thêm. Từ bản 1.2.3, Code Mới là nguồn mặc định bổ sung; lần cập nhật sẽ thêm nguồn nếu bạn chưa có, giữ trạng thái tắt nếu đã tự thêm và tắt trước đó. Yêu cầu tải nguồn dùng <code>credentials: omit</code>; không đính kèm lịch sử đổi, tên hiển thị hay cookie nguồn. Nhà cung cấp nguồn vẫn có thể thấy địa chỉ IP và thông tin kết nối HTTP thông thường.</li>
+    <li><strong>Nguồn công khai:</strong> tiện ích tải danh sách code, dữ liệu trang và tin từ <code>xemgi.de</code>, <code>deltaforce.garena.vn</code>, <code>codemoi.net</code>, <code>download.com.vn</code>, <code>www.dienmayxanh.com</code>, <code>rankga.com</code> và nguồn HTTPS bạn thêm. Sáu nguồn được bật mặc định để đọc dữ liệu mới mỗi lượt quét; bản cập nhật thêm các nguồn dự phòng chưa có, giữ lựa chọn tắt sẵn có. Yêu cầu tải nguồn dùng <code>credentials: omit</code>; không đính kèm lịch sử đổi, tên hiển thị hay cookie nguồn. Nhà cung cấp nguồn vẫn có thể thấy địa chỉ IP và thông tin kết nối HTTP thông thường.</li>
     <li><strong>Nguồn tùy chọn:</strong> Chrome chỉ xin quyền cho tên miền cụ thể sau khi bạn bấm thêm nguồn. Không nhập URL chứa thông tin riêng, token hoặc mã truy cập; URL nguồn được lưu cục bộ và có trong file xuất lịch sử.</li>
   </ul>
   <p>Không có máy chủ riêng, dịch vụ quảng cáo, công cụ theo dõi hay bên môi giới dữ liệu trong tiện ích. Mã thực thi đi kèm gói cài; JavaScript tải từ nguồn chỉ được đọc dưới dạng văn bản để trích danh sách code, không được thực thi. Garena, Google và từng nguồn áp dụng chính sách riêng cho dịch vụ của họ.</p>
@@ -48,7 +48,7 @@
       <tr><td><code>alarms</code></td><td>Quét theo lịch và đánh thức hàng chờ khi worker nền khởi động lại.</td></tr>
       <tr><td><code>offscreen</code></td><td>Đọc chữ trong HTML bằng DOMParser; không chạy script của trang nguồn.</td></tr>
       <tr><td>Trang đổi quà Garena</td><td>Hiện khung điều khiển, điền code, bấm đổi và nhận biết kết quả.</td></tr>
-      <tr><td>XemGì, tin Garena, Code Mới</td><td>Đọc các nguồn code/tin công khai mặc định. Bản 1.2.3 bổ sung quyền <code>https://codemoi.net/*</code> để quét Code Mới.</td></tr>
+      <tr><td>XemGì, tin Garena, Code Mới, Download.com.vn, Điện máy XANH, RankGA</td><td>Đọc dữ liệu mới từ sáu nguồn công khai mặc định. Bản 1.2.4 bổ sung ba tên miền nguồn dự phòng: <code>download.com.vn</code>, <code>www.dienmayxanh.com</code>, <code>rankga.com</code>.</td></tr>
       <tr><td>HTTPS tùy chọn</td><td>Cho phép bạn thêm nguồn công khai ở tên miền khác; chỉ cấp từng tên miền theo thao tác của bạn.</td></tr>
     </tbody>
   </table>

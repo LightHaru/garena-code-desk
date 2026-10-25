@@ -1,4 +1,4 @@
-CỦ CẢI · GARENA CODE DESK 1.2.3 — BẢN THỬ NGHIỆM
+CỦ CẢI · GARENA CODE DESK 1.2.4 — BẢN THỬ NGHIỆM
 Tiện ích Chrome trên máy tính cho Garena Delta Force Việt Nam.
 
 Bản mới có Stinger chuột quân y, Hackclaw, Vyron và D-Wolf Subrosa; mục Giới thiệu
@@ -11,7 +11,7 @@ TRANG TẢI CHÍNH:
 https://github.com/LightHaru/garena-code-desk/releases
 
 CÀI MIỄN PHÍ:
-1. Giải nén Garena-Code-Desk-v1.2.3.zip vào một thư mục cố định trên máy.
+1. Giải nén Garena-Code-Desk-v1.2.4.zip vào một thư mục cố định trên máy.
 2. Mở Google Chrome trên máy tính (phiên bản 116 trở lên).
 3. Gõ chrome://extensions vào thanh địa chỉ.
 4. Bật Chế độ dành cho nhà phát triển / Developer mode.
@@ -29,26 +29,27 @@ DÙNG:
 - Có thể dùng tab hoặc ứng dụng khác; giữ Chrome và tab Garena mở, máy đang thức.
 - Trong popup, Quét nguồn & đổi ngay cập nhật danh sách rồi mở lượt mới.
 - Bảng quản lý cho dán/nhập TXT, CSV, JSON; cấu hình nguồn, lịch và xuất lịch sử.
-- Nguồn mặc định: XemGì, tin Garena, Code Mới. Cập nhật tự thêm Code Mới nếu chưa có.
-- Nguồn gợi ý khác: Download.com.vn và Điện máy XANH; chọn nguồn, rồi cấp quyền.
-- Dán 8 mã khảo sát chỉ là nhập dự phòng; quét thành công đã tự lưu code mới.
+- Sáu nguồn mặc định: XemGì, Garena, Code Mới, Download.com.vn, Điện máy XANH, RankGA.
+- Mỗi lượt quét tải dữ liệu hiện tại; mã đăng thêm sau ngày cài tự vào hàng chờ.
+- Không cần tải ZIP cho mỗi đợt code mới. Nguồn lỗi vẫn tiếp tục nguồn khác.
+- Xem dòng Đã tự thêm N code mới vào hàng chờ và bấm Xem code mới.
 - Tự đổi sau lịch quét mặc định tắt; có thể chủ động bật trong bảng quản lý.
 
 CẬP NHẬT THỦ CÔNG:
 - Bấm Dừng và đợi code đang gửi có kết quả.
 - Tải bản ZIP mới từ trang Releases, giải nén và chép đè nội dung extension
   vào ĐÚNG thư mục extension đang dùng; không đổi đường dẫn thư mục đã nạp.
-- Vào chrome://extensions, bấm nút Tải lại trên thẻ tiện ích, kiểm tra phiên bản 1.2.3,
+- Vào chrome://extensions, bấm nút Tải lại trên thẻ tiện ích, kiểm tra phiên bản 1.2.4,
   rồi tải lại trang Garena. Mục Lỗi có thể còn giữ báo cáo cũ: xóa báo cáo cũ trước
   khi chạy lượt mới để phân biệt lỗi mới.
-- Bản 1.2.3 thêm quyền đọc codemoi.net để quét nguồn mới. Nếu Chrome hỏi quyền,
-  kiểm tra tên miền rồi cho phép. Nguồn từng thêm và tắt vẫn được giữ tắt.
+- Bản 1.2.4 thêm quyền đọc download.com.vn, www.dienmayxanh.com, rankga.com.
+  Nếu Chrome hỏi quyền, kiểm tra đúng ba tên miền. Nguồn từng tắt vẫn giữ tắt.
 - Bấm Quét nguồn ngay sau cập nhật để tự lấy mã chưa có vào hàng chờ.
 - Bản cài từ thư mục không nhận cập nhật tự động như bản Chrome Web Store.
 
 PHẠM VI:
 - Code từ nguồn là ứng viên; không bảo đảm còn hạn hoặc mọi tài khoản nhận được.
-- Nguồn chữ công khai: XemGì, Code Mới và các bài tin Garena; không quét nhóm riêng, ảnh,
+- Chỉ đọc chữ từ nguồn đã cấu hình. Không quét nhóm riêng, ảnh,
   video hoặc bình luận. Có thể nhập bổ sung từ danh sách của bạn.
 - Code lỗi được bỏ qua luôn, không hẹn giờ và không tự thử lại.
 - Từ 1.2.2, tiện ích tự chuyển code Chờ thử lại / Chưa mở đổi / Cần kiểm tra sang Đã bỏ qua.
@@ -70,16 +71,16 @@ CỦ CẢI PHẪN NỘ:
 - Facebook: https://www.facebook.com/profile.php?id=61594886253423
 
 TÌNH TRẠNG KIỂM TRA:
-- 53/53 kiểm tra logic và 44/44 kiểm tra trình duyệt giả lập đạt.
+- 58/58 kiểm tra logic và 51/51 kiểm tra trình duyệt giả lập đạt.
 - Giữ bản vá 1.1.2: tạm bỏ URL javascript của nút Đổi/Đóng trong lúc click.
-- 3/3 cấu hình nguồn mới đọc được đúng danh sách từ HTML công khai đã lưu.
+- 6/6 nguồn mặc định đọc được đúng danh sách từ HTML công khai đã lưu.
 - Đã xem khung popup khi cuộn, giao diện và website với dữ liệu mẫu.
-- Chưa xác nhận môi trường content script cô lập trong Chrome đã cài bản 1.2.3.
-- Chưa xác nhận bản 1.2.3 đổi quà trên tài khoản Garena thật.
+- Chưa xác nhận môi trường content script cô lập trong Chrome đã cài bản 1.2.4.
+- Chưa xác nhận bản 1.2.4 đổi quà trên tài khoản Garena thật.
 - Chưa quan sát lịch tự chạy đủ một ngày thật.
 - Đây là bản thử nghiệm phát qua GitHub, chưa phát hành trên Chrome Web Store.
 
-BẢN VÁ 1.2.3:
+BẢN VÁ 1.2.4:
 - Bổ sung Code Mới mặc định cho bản cài cũ và mới; không nhân đôi nguồn đã có.
 - Dữ liệu ngày 25/10: XemGì 242, Code Mới 41; gộp 250 ứng viên, thêm 8 so với XemGì.
 - Báo rõ nguồn lỗi/đọc một phần; lượt quét gián đoạn không khóa nút quét mãi.

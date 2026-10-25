@@ -180,6 +180,7 @@ async function refreshSources() {
     await mutate(state => { state.meta.crawling = true; state.meta.lastCrawlAttemptAt = start; state.meta.lastCrawlAddedCodes = []; state.meta.lastCrawlSummary = "Đang quét; code mới được tự lưu vào hàng chờ…"; });
     const summary = { added: 0, found: 0, errors: 0, sources: sources.length, completed: 0, partial: 0 };
     for (const source of sources) {
+      await mutate(state => { state.meta.lastCrawlSummary = `Đang quét ${sources.indexOf(source) + 1}/${sources.length}: ${source.name} · Đã tự thêm ${summary.added} code mới…`; });
       try {
         const result = await GCASources.crawlSource(source, { fetchText, parseHtml, cache: source.cache || {} });
         await mutate(state => {
@@ -189,7 +190,7 @@ async function refreshSources() {
           // Persist the new records and their scan list together, before reading
           // the next source. Neither an open dashboard nor an import click is needed.
           state.meta.lastCrawlAddedCodes.push(...merged.addedCodes);
-          Object.assign(current, { lastChecked: Date.now(), found: merged.found, added: merged.added, error: "", warning: result.warning || "", checkedArticles: result.checked || 0 });
+          Object.assign(current, { lastChecked: Date.now(), found: merged.found, added: merged.added, error: "", warning: result.warning || "", partial: !!result.partial, checkedArticles: result.checked || 0 });
           if (result.cache) current.cache = result.cache;
           summary.completed++;
           if (result.partial) summary.partial++;
@@ -200,7 +201,7 @@ async function refreshSources() {
         summary.errors++;
         await mutate(state => {
           const current = state.sources.find(item => item.id === source.id);
-          if (current) Object.assign(current, { lastChecked: Date.now(), error: String(error.message).slice(0, 500) });
+          if (current) Object.assign(current, { lastChecked: Date.now(), added: 0, error: String(error.message).slice(0, 500), warning: "", partial: false });
         });
       }
     }

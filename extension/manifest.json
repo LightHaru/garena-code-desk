@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Củ Cải · Garena Code Desk",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Quét giftcode Delta Force mỗi ngày, tự đổi trên Garena và ghi nhớ code đã xử lý.",
   "homepage_url": "https://lightharu.github.io/garena-code-desk-site/",
   "minimum_chrome_version": "116",
@@ -14,7 +14,10 @@
     "https://redeem.df.garena.sg/*",
     "https://xemgi.de/*",
     "https://deltaforce.garena.vn/*",
-    "https://codemoi.net/*"
+    "https://codemoi.net/*",
+    "https://download.com.vn/*",
+    "https://www.dienmayxanh.com/*",
+    "https://rankga.com/*"
   ],
   "optional_host_permissions": [
     "https://*/*"

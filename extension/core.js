@@ -3,7 +3,12 @@
   "use strict";
   const DAY = 86400000;
   const REDEEM_URL = "https://redeem.df.garena.sg/vi/cdkgarena.html";
-  const CODEMOI_SOURCE = Object.freeze({ id: "codemoi", kind: "html", name: "Code Mới · Delta Force", url: "https://codemoi.net/games/delta-force/", selector: "code", enabled: true, builtIn: true });
+  const CODEMOI_SOURCE = Object.freeze({ id: "codemoi", kind: "html", name: "Code Mới · Delta Force", url: "https://codemoi.net/games/delta-force/", selector: "code", autoExtract: true, enabled: true, builtIn: true });
+  const BACKUP_SOURCES = [
+    { id: "download", name: "Download.com.vn · Delta Force", url: "https://download.com.vn/code-game-delta-force-195638" },
+    { id: "dienmayxanh", name: "Điện máy XANH · Delta Force", url: "https://www.dienmayxanh.com/kinh-nghiem-hay/code-delta-force-garena-moi-nhat-1591472" },
+    { id: "rankga", name: "RankGA · Delta Force", url: "https://rankga.com/code-delta-force/" }
+  ].map(source => Object.freeze({ ...source, kind: "html", selector: "", autoExtract: true, enabled: true, builtIn: true }));
   const STATUS_LABELS = {
     pending: "Chờ đổi", processing: "Đang đổi", redeemed: "Đã nhận quà", used: "Đã dùng",
     expired: "Hết hạn", invalid: "Không hợp lệ", exhausted: "Hết lượt", account_limit: "Đã đủ gói",
@@ -33,23 +38,28 @@
       sources: [
         { id: "xemgi", kind: "xemgi", name: "XemGì · Delta Force", url: "https://xemgi.de/codes", enabled: true },
         { id: "garena", kind: "garena", name: "Garena Việt Nam · Tin chính thức", url: "https://deltaforce.garena.vn/", enabled: true },
-        { ...CODEMOI_SOURCE }
+        { ...CODEMOI_SOURCE }, ...BACKUP_SOURCES.map(source => ({ ...source }))
       ],
       run: { status: "idle", reason: "Sẵn sàng", processed: 0 },
       meta: { createdAt: now, lastCrawlAt: 0, crawling: false, lastCrawlSummary: "", seededAt: 0 }
     };
   }
   function upgradeSources(state) {
-    if (state.meta.sourcesSchema >= 1) return false;
+    if (state.meta.sourcesSchema >= 2) return false;
     // Match the URL as well as the ID: an earlier manual preset must keep its
     // enabled setting and must not be duplicated by an upgrade.
-    const target = CODEMOI_SOURCE.url.replace(/\/+$/, "");
-    if (!state.sources.some(source => String(source.url).replace(/\/+$/, "") === target)) {
-      let id = CODEMOI_SOURCE.id;
-      while (state.sources.some(source => source.id === id)) id += "-default";
-      state.sources.push({ ...CODEMOI_SOURCE, id });
+    const additions = [...(state.meta.sourcesSchema >= 1 ? [] : [CODEMOI_SOURCE]), ...BACKUP_SOURCES];
+    for (const source of additions) {
+      const target = source.url.replace(/\/+$/, "");
+      if (state.sources.some(item => String(item.url).replace(/\/+$/, "") === target)) continue;
+      let id = source.id;
+      while (state.sources.some(item => item.id === id)) id += "-default";
+      state.sources.push({ ...source, id });
     }
-    state.meta.sourcesSchema = 1;
+    for (const source of state.sources) {
+      if (source.builtIn && [CODEMOI_SOURCE, ...BACKUP_SOURCES].some(item => item.url === source.url)) source.autoExtract = true;
+    }
+    state.meta.sourcesSchema = 2;
     return true;
   }
   function crawlSummary({ added = 0, errors = 0, sources = 0, completed = 0, partial = 0 }) {
